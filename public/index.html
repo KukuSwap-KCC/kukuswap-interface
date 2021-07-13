@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/images/KukuSwapLogo.png" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/kukuswapfavicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/images/kukuswapfavicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/images/kukuswapfavicon.png" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#ff007a" />
+        <meta name="fortmatic-site-verification" content="j93LgcVZk79qcgyo" />
+
+        <style>
+          html{
+            background-color: #191919;
+          }
+          .bg {
+            animation:slide 10s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #191919 60%, #2e2900 10%);
+            bottom:0;
+            left:-50%;
+            opacity:.40;
+            position:fixed;
+            right:-50%;
+            top:0;
+            z-index:-1;
+          }
+
+          .bg2 {
+            animation-direction:alternate-reverse;
+            animation-duration:15s;
+          }
+
+          .bg3 {
+            animation-duration:12s;
+          }
+
+          @keyframes slide {
+            0% {
+              transform:translateX(-25%);
+            }
+            100% {
+              transform:translateX(25%);
+            }
+          }
+        </style>
+        <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+        <title>Kuku</title>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div id="root"></div>
+        <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    --></body>
+    <script defer src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</html>
