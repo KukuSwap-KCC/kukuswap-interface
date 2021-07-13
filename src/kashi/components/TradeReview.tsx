@@ -54,7 +54,7 @@ function TradeReview({ trade, allowedSlippage }: { trade: Trade | undefined; all
                             Liquidity Provider Fee
                             <QuestionHelper
                                 text={i18n._(
-                                    t`A portion of each trade (0.25%) goes to liquidity providers as a protocol incentive.`
+                                    t`A portion of each trade (0.17%) goes to liquidity providers as a protocol incentive.`
                                 )}
                             />
                         </div>

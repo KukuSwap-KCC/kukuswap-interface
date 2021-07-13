@@ -1,7 +1,7 @@
 {
     "name": "@kukuswap/interface",
     "description": "KuKuSwap Interface",
-    "homepage": ".",
+    "homepage": "https://kuku.zct.io",
     "private": true,
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [

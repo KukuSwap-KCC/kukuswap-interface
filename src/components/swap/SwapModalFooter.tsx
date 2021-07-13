@@ -115,7 +115,7 @@ export default function SwapModalFooter({
                         </TYPE.black>
                         <QuestionHelper
                             text={i18n._(
-                                t`A portion of each trade (0.25%) goes to liquidity providers as a protocol incentive.`
+                                t`A portion of each trade (0.17%) goes to liquidity providers as a protocol incentive.`
                             )}
                         />
                     </RowFixed>

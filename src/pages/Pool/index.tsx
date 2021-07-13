@@ -157,7 +157,7 @@ export default function Pool() {
                     <SwapPoolTabs active={'pool'} />
                     <Alert
                         title={i18n._(t`Liquidity Provider Rewards`)}
-                        message={t`Liquidity providers earn a 0.25% fee on all trades proportional to their share of
+                        message={t`Liquidity providers earn a 0.17% fee on all trades proportional to their share of
                         the pool. Fees are added to the pool, accrue in real time and can be claimed by
                         withdrawing your liquidity`}
                         type="information"

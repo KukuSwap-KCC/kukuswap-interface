@@ -46,7 +46,7 @@ export const MINIMUM_INTEREST_PER_YEAR = BigNumber.from(79274480)
     .mul(BigNumber.from(60))
     .mul(BigNumber.from(60))
     .mul(BigNumber.from(24))
-    .mul(BigNumber.from(365)) // approx 0.25% APR
+    .mul(BigNumber.from(365)) // approx 0.17% APR
 
 export const MAXIMUM_INTEREST_PER_YEAR = BigNumber.from(317097920000)
     .mul(BigNumber.from(60))

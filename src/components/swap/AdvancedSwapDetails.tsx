@@ -66,7 +66,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                         <div className="text-secondary text-sm">{i18n._(t`Liquidity Provider Fee`)}</div>
                         <QuestionHelper
                             text={i18n._(
-                                t`A portion of each trade (0.25%) goes to liquidity providers as a protocol incentive.`
+                                t`A portion of each trade (0.17%) goes to liquidity providers as a protocol incentive.`
                             )}
                         />
                     </RowFixed>

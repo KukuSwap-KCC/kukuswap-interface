@@ -58,7 +58,7 @@ export function interestAccrue(pair: any, interest: BigNumber): BigNumber {
         currentInterest = currentInterest.mul(INTEREST_ELASTICITY).div(scale)
 
         if (currentInterest.lt(MINIMUM_INTEREST_PER_YEAR)) {
-            currentInterest = MINIMUM_INTEREST_PER_YEAR // 0.25% APR minimum
+            currentInterest = MINIMUM_INTEREST_PER_YEAR // 0.17% APR minimum
         }
     } else if (pair.utilization.gt(MAXIMUM_TARGET_UTILIZATION)) {
         const overFactor = pair.utilization
