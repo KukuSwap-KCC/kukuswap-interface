@@ -1,7 +1,7 @@
 {
     "name": "@kukuswap/interface",
     "description": "KuKuSwap Interface",
-    "homepage": "https://kuku.zct.io",
+    "homepage": "https://kukuswap.io",
     "private": true,
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
@@ -22,7 +22,7 @@
         "@headlessui/react": "^1.0.0",
         "@hot-loader/react-dom": "^17.0.1",
         "@kukuswap/core": "2.0.0-canary.0",
-        "@kukuswap/default-token-list": "7.2.3",
+        "@kukuswap/default-token-list": "7.2.4",
         "@kukuswap/sdk": "5.0.2",
         "@lingui/cli": "^3.8.10",
         "@lingui/detect-locale": "^3.8.10",
