@@ -23,7 +23,7 @@
         "@hot-loader/react-dom": "^17.0.1",
         "@kukuswap/core": "2.0.0-canary.0",
         "@kukuswap/default-token-list": "7.2.4",
-        "@kukuswap/sdk": "5.0.2",
+        "@kukuswap/sdk": "5.0.3",
         "@lingui/cli": "^3.8.10",
         "@lingui/detect-locale": "^3.8.10",
         "@lingui/loader": "^3.8.10",
@@ -116,6 +116,7 @@
         "react": "^17.0.2",
         "react-app-rewire-hot-loader": "^2.0.1",
         "react-app-rewire-postcss": "^3.0.2",
+        "react-app-rewire-source-map-loader": "^1.0.2",
         "react-app-rewired": "^2.1.8",
         "react-device-detect": "^1.6.2",
         "react-dom": "^17.0.2",
@@ -162,7 +163,9 @@
         "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'",
         "prepare": "husky install",
         "lingui": "lingui extract && lingui compile",
-        "deploy": "npx gh-pages -d build"
+        "deploy": "npx gh-pages -d build",
+        "format:check": "prettier --check --loglevel error 'src/**/*.{js,jsx,ts,tsx}'",
+        "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
     },
     "browserslist": {
         "production": [
@@ -178,6 +181,9 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@lufycz/sushi-data": "^2.0.0-canary-21"
+        "@lufycz/sushi-data": "^2.0.0-canary-21",
+        "@types/resize-observer-browser": "^0.1.6",
+        "dayjs": "^1.8.16",
+        "lightweight-charts": "^3.4.0"
     }
 }

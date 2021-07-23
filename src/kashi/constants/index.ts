@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import { ethers } from 'ethers'
 
 // Functions that need accrue to be called
@@ -125,7 +125,7 @@ export const KASHI_ADDRESS: {
 export const SUSHISWAP_SWAPPER_ADDRESS: {
     [chainId in ChainId]: string
 } = {
-    [ChainId.KCC]: '', 
+    [ChainId.KCC]: '',
     [ChainId.MAINNET]: '0x1766733112408b95239aD1951925567CB1203084',
     [ChainId.ROPSTEN]: '',
     [ChainId.RINKEBY]: '',
@@ -153,7 +153,7 @@ export const SUSHISWAP_SWAPPER_ADDRESS: {
 export const SUSHISWAP_MULTISWAPPER_ADDRESS: {
     [chainId in ChainId]: string
 } = {
-    [ChainId.KCC]: '', 
+    [ChainId.KCC]: '',
     [ChainId.MAINNET]: '0x545820d5Cc05248da112419fEfb18522c63C8e12',
     [ChainId.ROPSTEN]: '',
     [ChainId.RINKEBY]: '',
@@ -179,7 +179,7 @@ export const SUSHISWAP_MULTISWAPPER_ADDRESS: {
 }
 
 export const SUSHISWAP_MULTI_EXACT_SWAPPER_ADDRESS = {
-    [ChainId.KCC]: '', 
+    [ChainId.KCC]: '',
     [ChainId.MAINNET]: '0xB527C5295c4Bc348cBb3a2E96B2494fD292075a7',
     [ChainId.ROPSTEN]: '',
     [ChainId.RINKEBY]: '',

@@ -1,4 +1,4 @@
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import { FortmaticConnector } from './Fortmatic'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { LatticeConnector } from '@web3-react/lattice-connector'
@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers'
 // import { BscConnector } from '@binance-chain/bsc-connector'
 
 const RPC = {
-    [ChainId.KCC]: 'https://rpc-mainnet.kcc.network',
+    [ChainId.KCC]: 'https://rpc-mainnet.kcc.network'
 }
 
 export const network = new NetworkConnector({
@@ -26,7 +26,7 @@ export function getNetworkLibrary(): Web3Provider {
 
 export const injected = new InjectedConnector({
     supportedChainIds: [
-        321, // kcc
+        321 // kcc
     ]
 })
 

@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from  '@kukuswap/sdk'
+import { Token, TokenAmount } from '@kukuswap/sdk'
 import { useMemo } from 'react'
 import { useAllTokenBalances } from '../../state/wallet/hooks'
 

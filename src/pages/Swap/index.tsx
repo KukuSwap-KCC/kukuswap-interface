@@ -3,7 +3,7 @@ import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../
 import { AutoRow, RowBetween } from '../../components/Row'
 import { ButtonConfirmed, ButtonError, ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
 import Card, { DarkCard, GreyCard } from '../../components/CardLegacy'
-import { ChainId, CurrencyAmount, JSBI, Token, Trade } from  '@kukuswap/sdk'
+import { ChainId, CurrencyAmount, JSBI, Token, Trade } from '@kukuswap/sdk'
 import Column, { AutoColumn } from '../../components/Column'
 import { LinkStyledButton, TYPE } from '../../theme'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
@@ -381,7 +381,8 @@ export default function Swap() {
                                 style={{ padding: '0 1rem' }}
                             >
                                 <button
-                                    className="bg-dark-900 p-3px -mt-6 -mb-6 z-10 rounded-sm border-yellow"  style={{ marginLeft: '85%'}}
+                                    className="bg-dark-900 p-3px -mt-6 -mb-6 z-10 rounded-sm border-yellow"
+                                    style={{ marginLeft: '85%' }}
                                     onClick={() => {
                                         setApprovalSubmitted(false) // reset 2 step UI for approvals
                                         onSwitchTokens()

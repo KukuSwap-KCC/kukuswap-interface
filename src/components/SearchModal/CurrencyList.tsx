@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from  '@kukuswap/sdk'
+import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@kukuswap/sdk'
 import { LightGreyCard } from 'components/CardLegacy'
 import QuestionHelper from 'components/QuestionHelper'
 import useTheme from 'hooks/useTheme'

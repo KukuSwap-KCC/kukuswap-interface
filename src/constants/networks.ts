@@ -1,7 +1,7 @@
 import Arbitrum from '../assets/networks/arbitrum-network.jpg'
 import Avalanche from '../assets/networks/avalanche-network.jpg'
 import Bsc from '../assets/networks/bsc-network.jpg'
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import Fantom from '../assets/networks/fantom-network.jpg'
 import Goerli from '../assets/networks/goerli-network.jpg'
 import Harmony from '../assets/networks/harmonyone-network.jpg'
@@ -16,7 +16,6 @@ import KCC from '../assets/networks/kcc-network.png'
 import Rinkeby from '../assets/networks/rinkeby-network.jpg'
 import Ropsten from '../assets/networks/ropsten-network.jpg'
 import xDai from '../assets/networks/xdai-network.jpg'
-
 
 export const NETWORK_ICON = {
     [ChainId.KCC]: KCC,

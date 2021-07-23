@@ -41,6 +41,13 @@ export const exchange = new ApolloClient({
     cache: new InMemoryCache()
 })
 
+export const kukuswap = new ApolloClient({
+    link: createHttpLink({
+        uri: 'https://graph.kukuswap.io/subgraphs/name/kukuswap'
+    }),
+    cache: new InMemoryCache()
+})
+
 export const exchange_matic = new ApolloClient({
     link: createHttpLink({
         uri: 'https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange'
@@ -63,7 +70,7 @@ export const healthClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
     link: createHttpLink({
-        uri: 'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks'
+        uri: 'https://graph.kukuswap.io/subgraphs/name/kcc-blocks'
     }),
     cache: new InMemoryCache()
 })

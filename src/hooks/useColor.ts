@@ -1,4 +1,4 @@
-import { ChainId, Token } from  '@kukuswap/sdk'
+import { ChainId, Token } from '@kukuswap/sdk'
 import Vibrant from 'node-vibrant'
 import { shade } from 'polished'
 import { useLayoutEffect, useState } from 'react'

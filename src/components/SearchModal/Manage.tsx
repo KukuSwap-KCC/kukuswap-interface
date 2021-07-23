@@ -1,4 +1,4 @@
-import { Token } from  '@kukuswap/sdk'
+import { Token } from '@kukuswap/sdk'
 import { TokenList } from '@uniswap/token-lists'
 import { RowBetween } from 'components/Row'
 import React, { useState } from 'react'

@@ -1,4 +1,4 @@
-import { Trade, TradeType } from  '@kukuswap/sdk'
+import { Trade, TradeType } from '@kukuswap/sdk'
 import React, { useContext, useMemo } from 'react'
 import { AlertTriangle, ArrowDown } from 'react-feather'
 import { Text } from 'rebass'

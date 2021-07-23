@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from  '@kukuswap/sdk'
+import { ChainId, Pair, Token } from '@kukuswap/sdk'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import ReactGA from 'react-ga'

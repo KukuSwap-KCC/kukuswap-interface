@@ -1,4 +1,4 @@
-import { Currency, ETHER, WETH, currencyEquals } from  '@kukuswap/sdk'
+import { Currency, ETHER, WETH, currencyEquals } from '@kukuswap/sdk'
 
 import { t } from '@lingui/macro'
 import { tryParseAmount } from '../state/swap/hooks'

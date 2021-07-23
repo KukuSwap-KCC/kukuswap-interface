@@ -1,4 +1,4 @@
-import { Price } from  '@kukuswap/sdk'
+import { Price } from '@kukuswap/sdk'
 import React, { useContext } from 'react'
 import { Repeat } from 'react-feather'
 import { Text } from 'rebass'

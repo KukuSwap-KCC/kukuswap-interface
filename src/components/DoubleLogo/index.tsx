@@ -1,4 +1,4 @@
-import { Currency } from  '@kukuswap/sdk'
+import { Currency } from '@kukuswap/sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'

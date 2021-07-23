@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair } from  '@kukuswap/sdk'
+import { ChainId, JSBI, Pair } from '@kukuswap/sdk'
 import { transparentize } from 'polished'
 import React, { useContext, useMemo } from 'react'
 import { Link, useHistory } from 'react-router-dom'
@@ -220,9 +220,13 @@ export default function Pool() {
                             </EmptyProposals>
                         )}
 
-
                         <div className="grid grid-cols-2 gap-4">
-                            <Button id="join-pool-button" color="gradient" className="border-gradient-filled" onClick={() => history.push('/add/ETH')}>
+                            <Button
+                                id="join-pool-button"
+                                color="gradient"
+                                className="border-gradient-filled"
+                                onClick={() => history.push('/add/ETH')}
+                            >
                                 {i18n._(t`Add Liquidity`)}
                             </Button>
                             <Button

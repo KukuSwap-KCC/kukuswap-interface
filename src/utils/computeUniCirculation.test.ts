@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Token, TokenAmount } from  '@kukuswap/sdk'
+import { ChainId, JSBI, Token, TokenAmount } from '@kukuswap/sdk'
 import { BigNumber, ethers } from 'ethers'
 import { computeUniCirculation } from './computeUniCirculation'
 

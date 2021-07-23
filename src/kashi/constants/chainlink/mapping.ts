@@ -1,4 +1,4 @@
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 
 export type ChainlinkMappingList = {
     readonly [address: string]: {

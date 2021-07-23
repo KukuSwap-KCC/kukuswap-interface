@@ -1,4 +1,4 @@
-import { Token } from  '@kukuswap/sdk'
+import { Token } from '@kukuswap/sdk'
 import { useMemo } from 'react'
 import { isAddress } from '../../utils'
 

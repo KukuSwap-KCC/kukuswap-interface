@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from  '@kukuswap/sdk'
+import { Currency, ETHER, Token } from '@kukuswap/sdk'
 
 export function currencyId(currency: Currency): string {
     if (currency === ETHER) return 'ETH'

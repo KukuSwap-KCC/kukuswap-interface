@@ -1,4 +1,4 @@
-import { ChainId, Currency } from  '@kukuswap/sdk'
+import { ChainId, Currency } from '@kukuswap/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 // import Logo from '../assets/images/logo.png'
@@ -47,7 +47,12 @@ function AppBar(): JSX.Element {
                             <div className="flex items-center justify-between h-16">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
-                                        <img src={Logo} alt="Sushi" className="h-10 w-auto" style={{ borderRadius: '1rem' }}/>
+                                        <img
+                                            src={Logo}
+                                            alt="Sushi"
+                                            className="h-10 w-auto"
+                                            style={{ borderRadius: '1rem' }}
+                                        />
                                     </div>
                                     <div className="hidden sm:block sm:ml-4">
                                         <div className="flex space-x-2">
@@ -67,7 +72,13 @@ function AppBar(): JSX.Element {
                                             >
                                                 {i18n._(t`Pool`)}
                                             </NavLink>
-                                            
+                                            {/*<NavLink id={`stake-nav-link`} to={'/stake'}>
+                                                {i18n._(t`Stake`)}
+                                            </NavLink>
+                                            */}
+                                            <NavLink id={`charts-nav-link`} to={'/charts'}>
+                                                {i18n._(t`Charts`)}
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>
@@ -172,17 +183,11 @@ function AppBar(): JSX.Element {
                                         </div>
                                         <LanguageSwitch />
 
-                                        {
-                                            chainId && [
-                                                ChainId.GÖRLI,
-                                                ChainId.KOVAN,
-                                                ChainId.RINKEBY,
-                                                ChainId.ROPSTEN
-                                            ].includes(chainId) && (
-                                                <Web3Faucet />
-                                            )
-                                        }
-                                        
+                                        {chainId &&
+                                            [ChainId.GÖRLI, ChainId.KOVAN, ChainId.RINKEBY, ChainId.ROPSTEN].includes(
+                                                chainId
+                                            ) && <Web3Faucet />}
+
                                         <MoreMenu />
                                     </div>
                                 </div>
@@ -226,49 +231,15 @@ function AppBar(): JSX.Element {
                                 >
                                     {i18n._(t`Pool`)}
                                 </NavLink>
+                                {/*<NavLink id={`stake-nav-link`} to={'/stake'}>
+                                    {i18n._(t`Stake`)}
+                                </NavLink>*/}
 
-                                {chainId && [ChainId.MAINNET, ChainId.MATIC].includes(chainId) && (
-                                    <NavLink id={`yield-nav-link`} to={'/yield'}>
-                                        {i18n._(t`Yield`)}
+                                {
+                                    <NavLink id={`charts-nav-link`} to={'/charts'}>
+                                        {i18n._(t`Charts`)}
                                     </NavLink>
-                                )}
-                                {chainId &&
-                                    [ChainId.MAINNET, ChainId.KOVAN, ChainId.BSC, ChainId.MATIC].includes(chainId) && (
-                                        <NavLink id={`kashi-nav-link`} to={'/bento/kashi/lend'}>
-                                            {i18n._(t`Kashi Lending`)}
-                                        </NavLink>
-                                    )}
-                                {chainId &&
-                                    [ChainId.MAINNET, ChainId.KOVAN, ChainId.BSC, ChainId.MATIC].includes(chainId) && (
-                                        <NavLink id={`bento-nav-link`} to={'/bento'}>
-                                            {i18n._(t`BentoBox`)}
-                                        </NavLink>
-                                    )}
-                                {chainId === ChainId.MAINNET && (
-                                    <NavLink id={`stake-nav-link`} to={'/sushibar'}>
-                                        {i18n._(t`SushiBar`)}
-                                    </NavLink>
-                                )}
-                                {chainId === ChainId.MAINNET && (
-                                    <NavLink id={`vesting-nav-link`} to={'/vesting'}>
-                                        {i18n._(t`Vesting`)}
-                                    </NavLink>
-                                )}
-                                {chainId &&
-                                    [
-                                        ChainId.MAINNET,
-                                        ChainId.BSC,
-                                        ChainId.XDAI,
-                                        ChainId.FANTOM,
-                                        ChainId.MATIC
-                                    ].includes(chainId) && (
-                                        <ExternalLink
-                                            id={`analytics-nav-link`}
-                                            href={ANALYTICS_URL[chainId] || 'https://analytics.sushi.com'}
-                                        >
-                                            {i18n._(t`Analytics`)}
-                                        </ExternalLink>
-                                    )}
+                                }
                             </div>
                         </Disclosure.Panel>
                     </>

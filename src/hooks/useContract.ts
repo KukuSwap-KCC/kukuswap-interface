@@ -10,7 +10,7 @@ import {
     KUKU_ADDRESS,
     TIMELOCK_ADDRESS,
     WETH
-} from  '@kukuswap/sdk'
+} from '@kukuswap/sdk'
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
 import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
@@ -198,6 +198,8 @@ export function useRouterContract(): Contract | null {
 
 export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {
     const { chainId } = useActiveWeb3React()
+
+    const address = '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2'
     return useContract(chainId && BAR_ADDRESS[chainId], BAR_ABI, withSignerIfPossible)
 }
 

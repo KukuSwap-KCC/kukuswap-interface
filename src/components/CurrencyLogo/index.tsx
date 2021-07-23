@@ -1,6 +1,5 @@
-import { ChainId, Currency, ETHER, Token } from  '@kukuswap/sdk'
+import { ChainId, Currency, ETHER, Token, KUKU } from '@kukuswap/sdk'
 import React, { useMemo } from 'react'
-
 import AvalancheLogo from '../../assets/images/avalanche-logo.png'
 import BinanceCoinLogo from '../../assets/images/binance-coin-logo.png'
 import KCCCoinLogo from '../../assets/images/kcc-logo.png'
@@ -30,6 +29,11 @@ const getTokenLogoURL = (address: string, chainId: any) => {
     } else {
         imageURL = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
     }
+    return imageURL
+}
+
+const getKukuLogo = () => {
+    let imageURL = `https://raw.githubusercontent.com/KukuSwap-KCC/icons/main/token/kuku.png`
     return imageURL
 }
 
@@ -97,6 +101,10 @@ export default function CurrencyLogo({
 
     if (currency === ETHER && chainId) {
         return <StyledNativeCurrencyLogo src={logo[chainId]} size={size} style={style} />
+    }
+
+    if (currency?.symbol === 'KUKU' && chainId) {
+        return <StyledNativeCurrencyLogo src={getKukuLogo()} size={size} style={style} />
     }
 
     return <StyledLogo size={size} srcs={srcs} alt={`${currency?.getSymbol(chainId) ?? 'token'} logo`} style={style} />

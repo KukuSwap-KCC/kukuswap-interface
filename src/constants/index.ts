@@ -23,24 +23,12 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 // KUKU
 export const KUKU: ChainTokenMap = {
-    [ChainId.KCC]: new Token(
-        ChainId.KCC,
-        '0x509195a9d762bc6f3282c874156bd2e45de86a10',
-        18,
-        'KUKU',
-        'KuKuToken'
-    ),
+    [ChainId.KCC]: new Token(ChainId.KCC, '0x509195a9d762bc6f3282c874156bd2e45de86a10', 18, 'KUKU', 'KuKuToken')
 }
 
 // KUKU
 export const SUSHI: ChainTokenMap = {
-    [ChainId.KCC]: new Token(
-        ChainId.KCC,
-        '0x509195a9d762bc6f3282c874156bd2e45de86a10',
-        18,
-        'KUKU',
-        'KuKuToken'
-    ),
+    [ChainId.KCC]: new Token(ChainId.KCC, '0x509195a9d762bc6f3282c874156bd2e45de86a10', 18, 'KUKU', 'KuKuToken')
 }
 
 // Default Ethereum chain tokens
@@ -116,15 +104,15 @@ export const PLAY = new Token(
     'Metaverse NFT Index'
 )
 
-export const XSUSHI_CALL = new Token(
+export const xKUKU_CALL = new Token(
     ChainId.MAINNET,
     '0xada279f9301C01A4eF914127a6C2a493Ad733924',
     18,
     'XSUc25-0531',
-    'XSUSHI 25 Call [31 May 2021]'
+    'xKUKU 25 Call [31 May 2021]'
 )
 
-export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
+export const xKUKU = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xKUKU', 'SushiBar')
 export const LIFT = new Token(ChainId.MAINNET, '0xf9209d900f7ad1DC45376a2caA61c78f6dEA53B6', 18, 'LIFT', 'LiftKitchen')
 export const LFBTC = new Token(
     ChainId.MAINNET,
@@ -134,16 +122,13 @@ export const LFBTC = new Token(
     'LiftKitchen BTC'
 )
 
-
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
     // [UNI_ADDRESS]: 'UNI',
     [TIMELOCK_ADDRESS]: 'Timelock'
 }
 
 // TODO: specify merkle distributor for mainnet
-export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId in ChainId]?: string } = {
-  
-}
+export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId in ChainId]?: string } = {}
 
 // TODO: update weekly with new constant
 export const MERKLE_ROOT =
@@ -180,23 +165,19 @@ const WRAPPED_NATIVE_ONLY: ChainTokenList = {
     [ChainId.HARMONY]: [WETH[ChainId.HARMONY]],
     [ChainId.HARMONY_TESTNET]: [WETH[ChainId.HARMONY_TESTNET]],
     [ChainId.OKEX]: [WETH[ChainId.OKEX]],
-    [ChainId.OKEX_TESTNET]: [WETH[ChainId.OKEX_TESTNET]],
+    [ChainId.OKEX_TESTNET]: [WETH[ChainId.OKEX_TESTNET]]
 }
-
-
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY
 }
 
-
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
  * tokens.
  */
-export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-}
+export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {}
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
@@ -209,9 +190,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-    [ChainId.KCC]: [
-        [KUKU[ChainId.KCC] as Token, WETH[ChainId.KCC]]
-    ]
+    [ChainId.KCC]: [[KUKU[ChainId.KCC] as Token, WETH[ChainId.KCC]]]
 }
 
 export interface WalletInfo {
@@ -287,11 +266,18 @@ export const BLOCKED_ADDRESSES: string[] = [
 
 // BentoBox Swappers
 export const BASE_SWAPPER: { [chainId in ChainId]?: string } = {
-    [ChainId.KCC]: '0x0',
+    [ChainId.KCC]: '0x0'
 }
 
 // Boring Helper
 // export const BORING_HELPER_ADDRESS = '0x11Ca5375AdAfd6205E41131A4409f182677996E6'
 
-export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
+export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {}
+
+export const timeframeOptions = {
+    WEEK: '1 week',
+    MONTH: '1 month',
+    // THREE_MONTHS: '3 months',
+    // YEAR: '1 year',
+    ALL_TIME: 'All time'
 }

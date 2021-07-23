@@ -1,4 +1,4 @@
-import { ChainId, Token, TokenAmount } from  '@kukuswap/sdk'
+import { ChainId, Token, TokenAmount } from '@kukuswap/sdk'
 import { useBoringHelperContract, useDashboardContract, useQuickSwapFactoryContract } from 'hooks/useContract'
 import { useCallback, useEffect, useRef, useState } from 'react'
 

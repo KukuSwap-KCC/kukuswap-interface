@@ -3,11 +3,6 @@ import React from 'react'
 import { Redirect, Route, RouteComponentProps, useLocation, Switch } from 'react-router-dom'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import Connect from './kashi/pages/Connect'
-import BorrowMarkets from './kashi/pages/Markets/Borrow'
-import CreateMarkets from './kashi/pages/Markets/Create'
-import LendMarkets from './kashi/pages/Markets/Lending'
-import BorrowPair from './kashi/pages/Pair/Borrow'
-import LendPair from './kashi/pages/Pair/Lend'
 import AddLiquidity from './pages/AddLiquidity'
 import {
     RedirectDuplicateTokenIds,
@@ -15,18 +10,18 @@ import {
     RedirectToAddLiquidity
 } from './pages/AddLiquidity/redirects'
 
-
 import Pool from './pages/Pool'
+import Chart from './pages/Charts'
+
 import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
+import SushiBar from './pages/SushiBar'
+import SushiBarTransactions from './pages/SushiBar/SushiBarTransactions'
+import SushiBarTips from './pages/SushiBar/Tips'
 import Trade from './pages/Trade'
 import Swap from './pages/Swap'
-import {
-    RedirectHashRoutes,
-    RedirectPathToSwapOnly,
-    RedirectToSwap
-} from './pages/Swap/redirects'
+import { RedirectHashRoutes, RedirectPathToSwapOnly, RedirectToSwap } from './pages/Swap/redirects'
 import Positions from './pages/Positions'
 import Transactions from './pages/Transactions'
 
@@ -35,11 +30,12 @@ function Routes(): JSX.Element {
     return (
         <Switch>
             <PublicRoute exact path="/connect" component={Connect} />
-           
-            {/* Pages */}
+            {/* Staking */}
+            {/*<Route exact strict path="/stake" component={SushiBar} />å{/* Pages */}
             <Route exact strict path="/tradingview" component={Trade} />
             <Route exact strict path="/trade" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />
+            <Route exact strict path="/charts" component={Chart} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
             <Route exact strict path="/find" component={PoolFinder} />
@@ -54,7 +50,6 @@ function Routes(): JSX.Element {
             <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
             <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-
             {/* Redirects for app routes */}
             <Route
                 exact
@@ -76,12 +71,10 @@ function Routes(): JSX.Element {
                     }
                 }) => <Redirect to={`/pool`} />}
             />
-
             {/* Redirects for Legacy Hash Router paths */}
-            { /*<Route exact strict path="/" component={RedirectHashRoutes} /> */ }
-
+            {/*<Route exact strict path="/" component={RedirectHashRoutes} /> */}
             {/* Catch all */}
-            <Route component={RedirectPathToSwapOnly} /> 
+            <Route component={RedirectPathToSwapOnly} />
         </Switch>
     )
 }

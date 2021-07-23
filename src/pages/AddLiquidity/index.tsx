@@ -1,6 +1,6 @@
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
 import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
-import { Currency, ETHER, TokenAmount, WETH, currencyEquals } from  '@kukuswap/sdk'
+import { Currency, ETHER, TokenAmount, WETH, currencyEquals } from '@kukuswap/sdk'
 import { Dots, Wrapper } from '../Pool/styleds'
 import React, { useCallback, useContext, useState } from 'react'
 import Row, { AutoRow, RowBetween, RowFlat } from '../../components/Row'
@@ -417,7 +417,10 @@ export default function AddLiquidity({
                                 justify={expertMode ? 'space-between' : 'flex-start'}
                                 style={{ padding: '0 1rem' }}
                             >
-                                <button className="bg-dark-900 rounded-sm border-yellow p-3px -mt-6 -mb-6 z-10" style={{ marginLeft: '85%' }}>
+                                <button
+                                    className="bg-dark-900 rounded-sm border-yellow p-3px -mt-6 -mb-6 z-10"
+                                    style={{ marginLeft: '85%' }}
+                                >
                                     <div className="bg-dark-800 hover:bg-dark-700 rounded-sm p-3">
                                         <Plus size="32" color={theme.text2} />
                                     </div>

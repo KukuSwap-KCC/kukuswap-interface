@@ -4,7 +4,7 @@ import { useActiveWeb3React } from './useActiveWeb3React'
 import { useIsTransactionPending, useTransactionAdder } from '../state/transactions/hooks'
 import useLPTokensState, { LPTokensState } from './useLPTokensState'
 import useSushiRoll from './useSushiRoll'
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 
 export type MigrateMode = 'permit' | 'approve'
 

@@ -1,7 +1,7 @@
 import { Interface } from '@ethersproject/abi'
 // import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import IUniswapV2PairABI from '@kukuswap/core/abi/IUniswapV2Pair.json'
-import { Currency, Pair, TokenAmount } from  '@kukuswap/sdk'
+import { Currency, Pair, TokenAmount } from '@kukuswap/sdk'
 import { useMemo } from 'react'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useMultipleContractSingleData } from '../state/multicall/hooks'

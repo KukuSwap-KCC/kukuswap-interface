@@ -2481,10 +2481,10 @@
   resolved "https://registry.yarnpkg.com/@kukuswap/default-token-list/-/default-token-list-7.2.4.tgz#03ca6d958bb4ec8c5def77e44989cbd537f4dc75"
   integrity sha512-1VUUtBJnmZTEJWkIa4EKgYgjsgm437HmNeKqijhLIBul/VQz8jC34H77U3/eFkvvZDpW+fLqQBn8uXSce07eOw==
 
-"@kukuswap/sdk@5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@kukuswap/sdk/-/sdk-5.0.2.tgz#c4f6934ac7a823f009a2e44faaf0661ddcd4cedc"
-  integrity sha512-l/p+87utjj5TyNi98fKxuv0axMA2Umcka2aNdqctleeK3efo837TDQmApeysDQmFcTddvbGR+gRoS0SkdUbdZg==
+"@kukuswap/sdk@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@kukuswap/sdk/-/sdk-5.0.3.tgz#090e2a70974eff1a16c539d71ffe061063fd504e"
+  integrity sha512-AR8dljmWszixWkbCSHyN3AgCHFMuIhAwuTzVHVDTEsBW1tVYz9ZgriCzHN+VT6krQN/Q9F0j2iZw3EXI1/txvg==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
@@ -3649,6 +3649,11 @@
     "@types/styled-components" "*"
     "@types/styled-system" "*"
     "@types/styled-system__css" "*"
+
+"@types/resize-observer-browser@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.6.tgz#d8e6c2f830e2650dc06fe74464472ff64b54a302"
+  integrity sha512-61IfTac0s9jvNtBCpyo86QeaN8qqpMGHdK0uGKCCIy2dt5/Yk84VduHIdWAcmkC5QvdkPL0p5eWYgUZtHKKUVg==
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -7542,6 +7547,13 @@ csv-stringify@5.3.3:
   resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-5.3.3.tgz#c4725686a33db9f61e70d87af712285baefebe21"
   integrity sha512-q8Qj+/lN74LRmG7Mg0LauE5WcnJOD5MEGe1gI57IYJCB61KWuEbAFHm1uIPDkI26aqElyBB57SlE2GGwq2EY5A==
 
+customize-cra@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/customize-cra/-/customize-cra-0.9.1.tgz#76b42c4f537c16329eccc09cfefd804d04c81550"
+  integrity sha512-LISruJ6ak6u+HVQ2vPI+HE4inpPugB73KB9YIpE2J1TW5L1Vrjzm3l2Yupyy+1alJGwAd5GAb5Hfc9qmSUuHow==
+  dependencies:
+    lodash.flow "^3.5.0"
+
 cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
@@ -7684,6 +7696,11 @@ date-fns@^2.20.0:
   version "2.20.2"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.20.2.tgz#7f05d1275e1e43c3bdde5998201920098e19c6a1"
   integrity sha512-QS0Z8SD/ALhKFvhtU4Fhz+1crsI7fPzBquXmdWay33KJPEU7btro2hnmmErpQRmt2D624B1lbjXQKDUMLnQTmQ==
+
+dayjs@^1.8.16:
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
+  integrity sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==
 
 dayjs@^1.9.3:
   version "1.10.4"
@@ -9642,6 +9659,11 @@ fake-merkle-patricia-tree@^1.0.1:
   integrity sha1-S4w6z7Ugr635hgsfFM2M40As3dM=
   dependencies:
     checkpoint-store "^1.1.0"
+
+fancy-canvas@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/fancy-canvas/-/fancy-canvas-0.2.2.tgz#33fd4976724169a1eda5015f515a2a1302d1ec91"
+  integrity sha512-50qi8xA0QkHbjmb8h7XQ6k2fvD7y/yMfiUw9YTarJ7rWrq6o5/3CCXPouYk+XSLASvvxtjyiQLRBFt3qkE3oyA==
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
@@ -12845,6 +12867,13 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+lightweight-charts@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/lightweight-charts/-/lightweight-charts-3.4.0.tgz#11ddeb8b6b790d81bb7f8f821eebdc25f5148d70"
+  integrity sha512-FV1F/9c3+0WiSZkZszOIaw32YZhxVjQbE9LKf9LavL+2JQPeBce8rV0CIiT1puzRUMK+JJR2cbL1Ky+PkIy88A==
+  dependencies:
+    fancy-canvas "0.2.2"
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -13045,6 +13074,11 @@ lodash.flatten@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
   integrity sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
+
+lodash.flow@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.flow/-/lodash.flow-3.5.0.tgz#87bf40292b8cf83e4e8ce1a3ae4209e20071675a"
+  integrity sha1-h79AKSuM+D5OjOGjrkIJ4gBxZ1o=
 
 lodash.get@^4, lodash.get@^4.4.2:
   version "4.4.2"
@@ -16307,6 +16341,14 @@ react-app-rewire-postcss@^3.0.2:
   dependencies:
     postcss-loader "^3.0.0"
 
+react-app-rewire-source-map-loader@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-app-rewire-source-map-loader/-/react-app-rewire-source-map-loader-1.0.2.tgz#162462c809e591796a47ca613ab2e91a13ef4a6e"
+  integrity sha512-zkRp0PzvGgAq20h2gbhAzOjknbGDtHVevEp7GWAQca2ftyOq7AgLEEJSvb/6obZAMzg1PvcU0toGEDR7P7xv9Q==
+  dependencies:
+    customize-cra "^0.9.1"
+    source-map-loader "^0.2.4"
+
 react-app-rewired@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-2.1.8.tgz#e192f93b98daf96889418d33d3e86cf863812b56"
@@ -17967,6 +18009,14 @@ source-map-explorer@^2.5.2:
     source-map "^0.7.3"
     temp "^0.9.4"
     yargs "^16.2.0"
+
+source-map-loader@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/source-map-loader/-/source-map-loader-0.2.4.tgz#c18b0dc6e23bf66f6792437557c569a11e072271"
+  integrity sha512-OU6UJUty+i2JDpTItnizPrlpOIBLmQbWMuBg9q5bVtnHACqw1tn9nNwqJLbv0/00JjnJb/Ee5g5WS5vrRv7zIQ==
+  dependencies:
+    async "^2.5.0"
+    loader-utils "^1.1.0"
 
 source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
   version "0.5.3"

@@ -1,4 +1,4 @@
-import { Currency, Pair, ChainId } from  '@kukuswap/sdk'
+import { Currency, Pair, ChainId } from '@kukuswap/sdk'
 import { darken } from 'polished'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'

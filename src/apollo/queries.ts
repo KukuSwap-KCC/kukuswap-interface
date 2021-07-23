@@ -1,5 +1,6 @@
 import { DocumentNode } from 'graphql/language/ast'
 import gql from 'graphql-tag'
+import { AnyARecord } from 'dns'
 //import { FACTORY_ADDRESS, BUNDLE_ID } from '../constants'
 const FACTORY_ADDRESS = '0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac'
 const BUNDLE_ID = '1'
@@ -12,11 +13,8 @@ export const tokenFieldsQuery = gql`
         decimals
         totalSupply
         volume
-        volumeUSD
-        untrackedVolumeUSD
         txCount
         liquidity
-        derivedETH
     }
 `
 
@@ -120,18 +118,13 @@ export const pairTokenFieldsQuery = gql`
         name
         symbol
         totalSupply
-        derivedETH
     }
 `
 
 export const pairFieldsQuery = gql`
     fragment pairFields on Pair {
         id
-        reserveUSD
-        reserveETH
-        volumeUSD
-        untrackedVolumeUSD
-        trackedReserveETH
+
         token0 {
             ...pairTokenFields
         }
@@ -144,7 +137,6 @@ export const pairFieldsQuery = gql`
         token1Price
         totalSupply
         txCount
-        timestamp
     }
     ${pairTokenFieldsQuery}
 `
@@ -159,19 +151,31 @@ export const pairTimeTravelQuery = gql`
 `
 
 export const pairSubsetQuery = gql`
-    query pairSubsetQuery(
-        $first: Int! = 1000
-        $pairAddresses: [Bytes]!
-        $orderBy: String! = "trackedReserveETH"
-        $orderDirection: String! = "desc"
-    ) {
-        pairs(first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: { id_in: $pairAddresses }) {
+    query pairSubsetQuery($first: Int! = 1000, $pairAddresses: [Bytes]!) {
+        pairs(first: $first, where: { id_in: $pairAddresses }) {
             ...pairFields
         }
     }
     ${pairFieldsQuery}
 `
 
+export const PAIR = gql`
+    query pair($id: String) {
+        pair(id: $id) {
+            token0 {
+                id
+                decimals
+                symbol
+            }
+
+            token1 {
+                id
+                decimals
+                symbol
+            }
+        }
+    }
+`
 export const liquidityPositionSubsetQuery = gql`
     query liquidityPositionSubsetQuery($first: Int! = 1000, $user: Bytes!) {
         liquidityPositions(first: $first, where: { user: $user }) {
@@ -328,6 +332,7 @@ export const GET_BLOCKS = (timestamps: string[]): DocumentNode => {
     }`
     })
     queryString += '}'
+
     return gql(queryString)
 }
 
@@ -875,8 +880,8 @@ export const PAIR_SEARCH = gql`
 `
 
 export const ALL_PAIRS = gql`
-    query pairs($skip: Int!) {
-        pairs(first: 500, skip: $skip, orderBy: trackedReserveETH, orderDirection: desc) {
+    query pairs {
+        pairs(first: 500, orderBy: id, orderDirection: desc) {
             id
             token0 {
                 id
@@ -901,26 +906,16 @@ const PairFields = `
       symbol
       name
       totalLiquidity
-      derivedETH
     }
     token1 {
       id
       symbol
       name
       totalLiquidity
-      derivedETH
     }
     reserve0
     reserve1
-    reserveUSD
-    totalSupply
-    trackedReserveETH
-    reserveETH
-    volumeUSD
-    untrackedVolumeUSD
-    token0Price
-    token1Price
-    createdAtTimestamp
+
   }
 `
 
@@ -1004,10 +999,7 @@ const TokenFields = `
     id
     name
     symbol
-    derivedETH
     tradeVolume
-    tradeVolumeUSD
-    untrackedVolumeUSD
     totalLiquidity
     txCount
   }
@@ -1191,3 +1183,26 @@ export const ALL_TRANSACTIONS = gql`
         }
     }
 `
+
+export const DEFAULT_GRAPH_PAGE_SIZE = 1000
+
+export const GET_SWAP_UPDATE_QUERY = (
+    pairAddress: string,
+    startTimeStamp: number,
+    pageSize: number = DEFAULT_GRAPH_PAGE_SIZE
+): DocumentNode => {
+    const queryString = ` query swaps { 
+        swaps(where: {pair: "${pairAddress}", timestamp_gt: "${startTimeStamp}"}, first: ${pageSize}) { 
+            id 
+            timestamp 
+            amount0In 
+            amount0Out 
+            amount1In 
+            amount1Out 
+            from 
+        }
+    } 
+    `
+
+    return gql(queryString)
+}

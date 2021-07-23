@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from  '@kukuswap/sdk'
+import { Token, TokenAmount } from '@kukuswap/sdk'
 import { ethers } from 'ethers'
 
 export default interface LPToken {

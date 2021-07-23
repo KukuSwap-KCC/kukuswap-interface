@@ -1,4 +1,4 @@
-import { CurrencyAmount, ETHER, JSBI } from  '@kukuswap/sdk'
+import { CurrencyAmount, ETHER, JSBI } from '@kukuswap/sdk'
 import { MIN_ETH } from '../constants'
 
 /**

@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { ChainId, JSBI, Percent, Token, TokenAmount } from  '@kukuswap/sdk'
+import { ChainId, JSBI, Percent, Token, TokenAmount } from '@kukuswap/sdk'
 import {
     basisPointsToPercent,
     calculateGasMargin,

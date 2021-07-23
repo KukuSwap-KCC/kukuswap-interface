@@ -32,7 +32,7 @@ export default function Menu() {
                     <Popover.Button
                         className={classNames(open ? 'text-secondary' : 'text-primary', 'focus:outline-none')}
                     >
-                    Socials
+                        Socials
                     </Popover.Button>
 
                     <Transition

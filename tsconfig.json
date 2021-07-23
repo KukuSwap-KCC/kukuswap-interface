@@ -22,9 +22,10 @@
         "jsx": "react",
         "downlevelIteration": true,
         "allowSyntheticDefaultImports": true,
-        "types": ["react-spring", "jest"],
-        "baseUrl": "src"
+        "types": ["react-spring", "jest", "resize-observer-browser"],
+        "baseUrl": "src",
+        
     },
     "exclude": ["node_modules", "cypress"],
-    "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+    "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/hooks/useHourlyRates.js", "src/contexts/PairData.js"]
 }

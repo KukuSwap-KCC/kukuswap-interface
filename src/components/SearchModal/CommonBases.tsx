@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, ETHER, Token } from  '@kukuswap/sdk'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from '@kukuswap/sdk'
 import React from 'react'
 import { Text } from 'rebass'
 import styled from 'styled-components'

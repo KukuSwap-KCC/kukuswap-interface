@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Button } from 'components'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
-import { WETH } from  '@kukuswap/sdk'
+import { WETH } from '@kukuswap/sdk'
 import { e10, ZERO } from 'kashi/functions/math'
 import { Direction, TransactionReview } from 'kashi/entities/TransactionReview'
 import TransactionReviewView from 'kashi/components/TransactionReview'

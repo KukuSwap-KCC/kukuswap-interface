@@ -1,4 +1,4 @@
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 
 const TOKEN_ICONS: { [chainId in ChainId]?: any } = {
     [ChainId.MAINNET]: {
@@ -78,7 +78,7 @@ const TOKEN_ICONS: { [chainId in ChainId]?: any } = {
         [String('0x1cF4592ebfFd730c7dc92c1bdFFDfc3B9EfCf29a').toLowerCase()]: 'WAVES-square',
         [String('0x0d438F3b5175Bebc262bF23753C1E53d03432bDE').toLowerCase()]: 'WNXM-square',
         // [String('').toLowerCase()]: XRP,
-        [String('0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272').toLowerCase()]: 'XSUSHI-square',
+        [String('0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272').toLowerCase()]: 'xKUKU-square',
         [String('0x23693431dE4CcCAe05d0CAF63bE0f1dcFcDf4906').toLowerCase()]: 'XTZ-square',
         [String('0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e').toLowerCase()]: 'YFI-square',
         [String('0xa1d0E215a23d7030842FC67cE582a6aFa3CCaB83').toLowerCase()]: 'YFII-square',

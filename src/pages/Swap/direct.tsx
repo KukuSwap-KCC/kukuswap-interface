@@ -1,4 +1,4 @@
-import { CurrencyAmount, JSBI, Token, Trade } from  '@kukuswap/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from '@kukuswap/sdk'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'

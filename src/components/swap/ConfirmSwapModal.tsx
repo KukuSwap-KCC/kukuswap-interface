@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from  '@kukuswap/sdk'
+import { currencyEquals, Trade } from '@kukuswap/sdk'
 import React, { useCallback, useMemo } from 'react'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import TransactionConfirmationModal, {

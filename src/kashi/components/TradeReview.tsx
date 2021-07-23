@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trade } from  '@kukuswap/sdk'
+import { Trade } from '@kukuswap/sdk'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'
 import QuestionHelper from 'components/QuestionHelper'
 import FormattedPriceImpact from 'components/swap/FormattedPriceImpact'

@@ -92,24 +92,25 @@ export default function FaucetModal() {
         setWaiting(true)
         setError('')
         setTxHash('')
-        faucetContract?.drip()
-        .then((tx: any) => {
-            setWaiting(false)
-            setTxHash(tx.hash)
-        })
-        .catch((err: any) => {
-            if (err.code === 4001) {
-                setError('Transaction rejected.')
-            } else {
-                console.error(`Claim failed`, err, 'drip')
-                setError(`Claim failed: ${err.message}`)
-            }
-            setWaiting(false)
-        })
+        faucetContract
+            ?.drip()
+            .then((tx: any) => {
+                setWaiting(false)
+                setTxHash(tx.hash)
+            })
+            .catch((err: any) => {
+                if (err.code === 4001) {
+                    setError('Transaction rejected.')
+                } else {
+                    console.error(`Claim failed`, err, 'drip')
+                    setError(`Claim failed: ${err.message}`)
+                }
+                setWaiting(false)
+            })
     }, [faucetContract])
 
     useEffect(() => {
-        if(faucetModalOpen) {
+        if (faucetModalOpen) {
             setRunning(false)
         }
     }, [faucetModalOpen])
@@ -139,19 +140,18 @@ export default function FaucetModal() {
         [toggleFaucetModal, faucetErrorMessage]
     )
 
-    return (
-        !isRunning ?
-            <Modal isOpen={faucetModalOpen} onDismiss={toggleFaucetModal} minHeight={false} maxHeight={90}>
-                <Wrapper>{getModalContent()}</Wrapper>
-            </Modal>
-        :
-            <TransactionConfirmationModal
-                isOpen={faucetModalOpen}
-                onDismiss={toggleFaucetModal}
-                attemptingTxn={isWaiting}
-                hash={txHash}
-                content={confirmationContent}
-                pendingText={'Claiming test tokens'}
-            />
+    return !isRunning ? (
+        <Modal isOpen={faucetModalOpen} onDismiss={toggleFaucetModal} minHeight={false} maxHeight={90}>
+            <Wrapper>{getModalContent()}</Wrapper>
+        </Modal>
+    ) : (
+        <TransactionConfirmationModal
+            isOpen={faucetModalOpen}
+            onDismiss={toggleFaucetModal}
+            attemptingTxn={isWaiting}
+            hash={txHash}
+            content={confirmationContent}
+            pendingText={'Claiming test tokens'}
+        />
     )
 }

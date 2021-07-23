@@ -2,7 +2,7 @@ import { NETWORK_ICON, NETWORK_LABEL } from '../../constants/networks'
 import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
 
 import { ApplicationModal } from '../../state/application/actions'
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import Modal from '../Modal'
 import ModalHeader from '../ModalHeader'
 import React from 'react'
@@ -50,9 +50,7 @@ export default function NetworkModal(): JSX.Element | null {
             </div>
 
             <div className="flex flex-col space-y-5 overflow-y-auto">
-                {[
-                    ChainId.KCC
-                ].map((key: ChainId, i: number) => {
+                {[ChainId.KCC].map((key: ChainId, i: number) => {
                     if (chainId === key) {
                         return (
                             <button key={i} className="bg-gradient-to-r from-blue to-pink w-full rounded p-px">

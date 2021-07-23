@@ -1,4 +1,4 @@
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import INCH from '../../assets/kashi/tokens/1inch-square.jpg'
 import AAVE from '../../assets/kashi/tokens/aave-square.jpg'
 // todo: move these into sushiswap/assets/square
@@ -117,7 +117,6 @@ import COIN from '../../assets/kashi/tokens/coin-square.jpg'
 import FRX from '../../assets/kashi/tokens/frx-square.jpg'
 import WOOFY from '../../assets/kashi/tokens/woofy-square.jpg'
 import KUKU from '../../assets/kashi/tokens/kuku-square.jpg'
-
 
 const TOKEN_ICONS: { [chainId in ChainId]?: any } = {
     [ChainId.MAINNET]: {

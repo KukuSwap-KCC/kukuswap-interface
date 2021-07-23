@@ -1,4 +1,4 @@
-import { ChainId } from  '@kukuswap/sdk'
+import { ChainId } from '@kukuswap/sdk'
 import React, { useContext } from 'react'
 import { AlertTriangle, ArrowUpCircle } from 'react-feather'
 import { Text } from 'rebass'
@@ -40,7 +40,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
                     <CloseIcon onClick={onDismiss} />
                 </RowBetween>
                 <ConfirmedIcon>
-                    <CustomLightSpinner src={Circle} alt="loader" size={'90px'}/>
+                    <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
                 </ConfirmedIcon>
                 <AutoColumn gap="12px" justify={'center'}>
                     <Text fontWeight={500} fontSize={20}>
@@ -79,9 +79,9 @@ function TransactionSubmittedContent({
                     <CloseIcon onClick={onDismiss} />
                 </RowBetween>
                 <ConfirmedIcon>
-                <div className="flex-shrink-0">
+                    <div className="flex-shrink-0">
                         <img src={Logo} alt="Sushi" className="h-40 w-auto" />
-                </div>
+                    </div>
                     {/* <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} /> */}
                 </ConfirmedIcon>
                 <AutoColumn gap="12px" justify={'center'}>

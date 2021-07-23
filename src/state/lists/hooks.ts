@@ -1,4 +1,4 @@
-import { ChainId, Token } from  '@kukuswap/sdk'
+import { ChainId, Token } from '@kukuswap/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 
 import { AppState } from '../index'
@@ -133,7 +133,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
         1666700000: { ...map1[1666700000], ...map2[1666700000] }, // harmony testnet
         66: { ...map1[66], ...map2[66] }, // okex
         65: { ...map1[65], ...map2[65] },
-        321: { ...map1[321], ...map2[321] }, // mainnet
+        321: { ...map1[321], ...map2[321] } // mainnet
     }
 }
 

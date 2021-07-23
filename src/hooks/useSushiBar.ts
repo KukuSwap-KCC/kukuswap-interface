@@ -11,8 +11,8 @@ const { BigNumber } = ethers
 const useSushiBar = () => {
     const { account } = useActiveWeb3React()
     const addTransaction = useTransactionAdder()
-    const sushiContract = useSushiContract(true) // withSigner
-    const barContract = useSushiBarContract(true) // withSigner
+    const sushiContract = useSushiContract(false) // withSigner
+    const barContract = useSushiBarContract(false) // withSigner
 
     const [allowance, setAllowance] = useState('0')
 
