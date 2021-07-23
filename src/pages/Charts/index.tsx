@@ -29,7 +29,7 @@ export default function App() {
     const { i18n } = useLingui()
     const chartContainerRef = useRef<any>()
 
-    const [timeWindow, setTimeWindow] = useState(timeframeOptions.MONTH)
+    const [timeWindow, setTimeWindow] = useState(timeframeOptions.WEEK)
 
     const KUKU = new Token(321, '0x509195A9d762BC6F3282c874156bd2E45dE86a10', 18, 'KUKU', 'KuKu Token')
 

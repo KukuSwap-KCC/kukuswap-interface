@@ -30,7 +30,7 @@ const getHourlyRateData = async (pairAddress, startTime, latestBlock) => {
         const timestamps = []
         while (time <= utcEndTime.unix()) {
             timestamps.push(time)
-            time += 3600
+            time += 900
         }
 
         // backout if invalid timestamp format
@@ -43,7 +43,7 @@ const getHourlyRateData = async (pairAddress, startTime, latestBlock) => {
 
         console.log(timestamps)
 
-        blocks = await getBlocksFromTimestamps(timestamps, 100)
+        blocks = await getBlocksFromTimestamps(timestamps, 500)
 
         // catch failing case
         if (!blocks || blocks?.length === 0) {
