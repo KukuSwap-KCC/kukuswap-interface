@@ -1,1 +1,0 @@
-(this["webpackJsonp@kukuswap/interface"]=this["webpackJsonp@kukuswap/interface"]||[]).push([[16],{1242:function(s,e){s.exports={messages:{}}}}]);

@@ -1,15 +1,15 @@
 {
-  "short_name": "SushiSwap",
-  "name": "SushiSwap",
+  "short_name": "KukuSwap",
+  "name": "KukuSwap",
   "icons": [
     {
-      "src": "./images/logo-192x192.png",
+      "src": "./images/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./images/logo-512x512.png",
+      "src": "./images/android-chrome-192x192.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

@@ -1,0 +1,1 @@
+(this["webpackJsonp@kukuswap/interface"]=this["webpackJsonp@kukuswap/interface"]||[]).push([[27],{1485:function(p,s){}}]);
