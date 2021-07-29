@@ -25,6 +25,9 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/ban-types": "warn"
+    "@typescript-eslint/ban-types": "warn",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-empty-interface":"off"
   }
 }

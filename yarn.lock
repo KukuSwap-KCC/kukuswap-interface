@@ -2481,10 +2481,10 @@
   resolved "https://registry.yarnpkg.com/@kukuswap/default-token-list/-/default-token-list-7.2.4.tgz#03ca6d958bb4ec8c5def77e44989cbd537f4dc75"
   integrity sha512-1VUUtBJnmZTEJWkIa4EKgYgjsgm437HmNeKqijhLIBul/VQz8jC34H77U3/eFkvvZDpW+fLqQBn8uXSce07eOw==
 
-"@kukuswap/sdk@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@kukuswap/sdk/-/sdk-5.0.3.tgz#090e2a70974eff1a16c539d71ffe061063fd504e"
-  integrity sha512-AR8dljmWszixWkbCSHyN3AgCHFMuIhAwuTzVHVDTEsBW1tVYz9ZgriCzHN+VT6krQN/Q9F0j2iZw3EXI1/txvg==
+"@kukuswap/sdk@5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@kukuswap/sdk/-/sdk-5.0.7.tgz#bd6e0ed7ab2aad1cab75471cccf35a665aaaa310"
+  integrity sha512-XARknLThMAYKf4z0gdBW7Db1R8FPAL+1pFU3yPatmowNXwawy0dhuKiEQQtC2hUTz/t7fJCcegpGV3Hsxsghdg==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

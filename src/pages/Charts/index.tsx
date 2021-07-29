@@ -1,11 +1,18 @@
+/* eslint-disable  @typescript-eslint/no-empty-interface */
+
+/* eslint-disable no-restricted-globals */
+
+/* eslint no-restricted-globals:0 */
+
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { createChart, CrosshairMode, IChartApi } from 'lightweight-charts'
 import { priceData } from './priceData'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
+import {TVChartContainer} from '../../components/ProCharts'
 import { currencyId } from '../../utils/currencyId'
 import CurrencyLogo from '../../components/CurrencyLogo'
-import { ButtonDropdownLight, ButtonLight } from '../../components/ButtonLegacy'
+import { ButtonDropdownLight, ButtonLight, ButtonPrimaryNormal, ButtonPrimary } from '../../components/ButtonLegacy'
 import { Currency, ETHER, JSBI, TokenAmount, Token, ChainId } from '@kukuswap/sdk'
 import Row from '../../components/Row'
 import { Text } from 'rebass'
@@ -13,7 +20,8 @@ import './styles.css'
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Helmet } from 'react-helmet'
-import { useHourlyRateData } from '../../contexts/PairData'
+import { use15MinRateData, use30MinRateData, useHourlyRateData } from '../../contexts/PairData'
+
 import { timeframeOptions } from '../../constants'
 import { PairState, usePair } from '../../data/Reserves'
 import ChartAnimationLogo from '../../assets/images/chartAnimation.gif'
@@ -34,10 +42,21 @@ export default function App() {
     const KUKU = new Token(321, '0x509195A9d762BC6F3282c874156bd2E45dE86a10', 18, 'KUKU', 'KuKu Token')
 
     const chart = useRef<any>()
+    const preloader = useRef<any>()
+
     const resizeObserver = useRef<any>()
 
     const chainId = 321
     const [showSearch, setShowSearch] = useState<boolean>(false)
+
+    const [show15MinTimeFrame, setShow15MinTimeframe] = useState<boolean>(true)
+
+    const [show30MinTimeFrame, setShow30MinTimeframe] = useState<boolean>(false)
+
+    const [show1HTimeFrame, setShow1HTimeframe] = useState<boolean>(false)
+
+    const [changeTimeFrame, setChangeTimeFrame] = useState<boolean>(false)
+
     const [activeField, setActiveField] = useState<number>(Fields.TOKEN1)
 
     const [chartCreated, setChartCreated] = useState(false)
@@ -51,6 +70,7 @@ export default function App() {
 
     const pairs = usePairs(pair?.liquidityToken.address.toLowerCase())
 
+
     let token0
     let token1
     if (pairs) {
@@ -58,14 +78,51 @@ export default function App() {
         token1 = pairs.pair.token1.symbol
     }
 
+
+    
+    const min15Data = use15MinRateData(pair?.liquidityToken.address.toLowerCase(), timeWindow)
+   
+
+    const min15Rate0 = min15Data && min15Data[0]
+    const min15Rate1 = min15Data && min15Data[1]
+
+    const min30Data = use30MinRateData(pair?.liquidityToken.address.toLowerCase(), timeWindow)
+    const min30Rate0 = min30Data && min30Data[0]
+    const min30Rate1 = min30Data && min30Data[1]
+
+
     const hourlyData = useHourlyRateData(pair?.liquidityToken.address.toLowerCase(), timeWindow)
     const hourlyRate0 = hourlyData && hourlyData[0]
     const hourlyRate1 = hourlyData && hourlyData[1]
 
+
     let formattedData: any
+    let formattedData15: any
+    let formattedData30: any
+    let formattedData60: any
 
     if (token0 == currency0.symbol) {
-        formattedData = hourlyRate1?.map((entry: any) => {
+        formattedData15 = min15Rate1?.map((entry: any) => {
+            return {
+                time: parseFloat(entry.timestamp),
+                open: parseFloat(entry.open),
+                low: parseFloat(entry.open),
+                close: parseFloat(entry.close),
+                high: parseFloat(entry.close)
+            }
+        })
+
+        formattedData30 = min30Rate1?.map((entry: any) => {
+            return {
+                time: parseFloat(entry.timestamp),
+                open: parseFloat(entry.open),
+                low: parseFloat(entry.open),
+                close: parseFloat(entry.close),
+                high: parseFloat(entry.close)
+            }
+        })
+
+        formattedData60 = hourlyRate1?.map((entry: any) => {
             return {
                 time: parseFloat(entry.timestamp),
                 open: parseFloat(entry.open),
@@ -75,7 +132,27 @@ export default function App() {
             }
         })
     } else {
-        formattedData = hourlyRate0?.map((entry: any) => {
+        formattedData15 = min15Rate0?.map((entry: any) => {
+            return {
+                time: parseFloat(entry.timestamp),
+                open: parseFloat(entry.open),
+                low: parseFloat(entry.open),
+                close: parseFloat(entry.close),
+                high: parseFloat(entry.close)
+            }
+        })
+
+        formattedData30 = min30Rate0?.map((entry: any) => {
+            return {
+                time: parseFloat(entry.timestamp),
+                open: parseFloat(entry.open),
+                low: parseFloat(entry.open),
+                close: parseFloat(entry.close),
+                high: parseFloat(entry.close)
+            }
+        })
+
+        formattedData60 = hourlyRate0?.map((entry: any) => {
             return {
                 time: parseFloat(entry.timestamp),
                 open: parseFloat(entry.open),
@@ -85,6 +162,24 @@ export default function App() {
             }
         })
     }
+    
+    console.log('formatted15')
+    console.log(formattedData15)
+
+    if (show15MinTimeFrame) {
+        formattedData = formattedData15
+    }
+
+    if (show30MinTimeFrame) {
+        formattedData = formattedData30
+    }
+
+
+    if (show1HTimeFrame) {
+        formattedData = formattedData60
+    }
+    
+
 
     const handleCurrencySelect = useCallback(
         (currency: Currency) => {
@@ -98,6 +193,39 @@ export default function App() {
         },
         [activeField]
     )
+
+    const handle15MinTimeFrameSelect = () => {
+        setShow15MinTimeframe(true)
+        setShow30MinTimeframe(false)
+        setShow1HTimeframe(false)
+        setChangeTimeFrame(true)
+        
+        preloader.current.className = "m-auto lg:mt-28"
+        chartContainerRef.current.className = "hidden"
+       
+    }
+
+    const handle30MinTimeFrameSelect = () => {
+        setShow15MinTimeframe(false)
+        setShow30MinTimeframe(true)
+        setShow1HTimeframe(false)
+        setChangeTimeFrame(true)
+        
+        preloader.current.className = "m-auto lg:mt-28"
+        chartContainerRef.current.className = "hidden"
+         
+    }
+
+    const handle1HTimeFrameSelect = () => {
+        setShow15MinTimeframe(false)
+        setShow30MinTimeframe(false)
+        setShow1HTimeframe(true)
+        setChangeTimeFrame(true)
+
+        preloader.current.className = "m-auto lg:mt-28"
+        chartContainerRef.current.className = "hidden"
+
+    }
 
     const handleSearchDismiss = useCallback(() => {
         setShowSearch(false)
@@ -121,6 +249,10 @@ export default function App() {
         }
 
         if (!chartCreated && formattedData) {
+
+            chartContainerRef.current.className = "chart-container w-2xl w-full"
+            preloader.current.className = "hidden"
+
             chart.current = createChart(chartContainerRef.current, {
                 width: chartContainerRef.current.clientWidth,
                 height: chartContainerRef.current.clientHeight,
@@ -207,7 +339,7 @@ export default function App() {
                     secondsVisible: false
                 }
             })
-
+            
             const candleSeries = chart.current.addCandlestickSeries({
                 upColor: '#4bffb5',
                 downColor: '#ff4976',
@@ -231,41 +363,55 @@ export default function App() {
             }
 
             setChartCreated(chart.current)
+        
             chart.current.timeScale().fitContent()
         }
 
         return () => {
-            if (chartCreated && selectCurrency) {
+            if (chartCreated && (selectCurrency || changeTimeFrame)) {
                 const chart: any = chartCreated
                 chart.remove()
                 setCurrencySelected(false)
                 setChartCreated(false)
+                setChangeTimeFrame(false)
+                formattedData = []
             }
         }
-    }, [pair, hourlyData, chartCreated, selectCurrency])
+    }, [pair, min15Data, setChartCreated, selectCurrency, changeTimeFrame])
 
     // Resize chart on container resizes.
     useEffect(() => {
+
+        if (chartCreated) {
         resizeObserver.current = new ResizeObserver(entries => {
             const { width, height } = entries[0].contentRect
-            chart.current.applyOptions({ width, height })
-            setTimeout(() => {
-                chart.current.timeScale().fitContent()
-            }, 0)
+
+
+                const chart :any = chartCreated 
+                chart.applyOptions({ width, height })
+                setTimeout(() => {
+                    chart.timeScale().fitContent()
+                }, 0)
         })
 
         resizeObserver.current.observe(chartContainerRef.current)
+        }
 
-        return () => resizeObserver.current.disconnect()
-    }, [])
+        return () => { 
+            if (chartCreated) {
+                resizeObserver.current.disconnect()
+            }
+        }
+    }, [chartCreated])
+
 
     return (
         <div className="App">
             <Helmet>
                 <title>Charts | Kuku</title>
             </Helmet>
-            <div className="rounded mb-5 flex flex-col w-full max-w-2xl min-h-fitContent">
-                <div className="flex flex-row mb-5">
+            <div className="rounded flex flex-col w-full">
+                <div className="flex flex-row">
                     <div className="max-w-sm">
                         <div>
                             <ButtonDropdownLight
@@ -313,8 +459,10 @@ export default function App() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row">
-                    <div className="flex max-w-sm w-full">
+            </div>
+            <div className="xl:grid xl:grid-cols-2 xl:gap-2">
+             <div className="flex mb-5 ">
+                <div className="flex max-w-sm w-full">
                         {currency0 && currency1 ? (
                             <a
                                 href={`/#/swap?inputCurrency=${currencyId(currency0)}&outputCurrency=${currencyId(
@@ -322,7 +470,7 @@ export default function App() {
                                 )}`}
                                 className="max-w-sm w-full"
                             >
-                                <ButtonLight>{i18n._(t`Swap`)}</ButtonLight>
+                                <ButtonPrimary>{i18n._(t`Swap`)}</ButtonPrimary>
                             </a>
                         ) : (
                             ''
@@ -335,23 +483,32 @@ export default function App() {
                                 href={`/#/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                                 className="max-w-sm w-full"
                             >
-                                <ButtonLight>{i18n._(t`Add Liquidity`)}</ButtonLight>
+                                <ButtonPrimary>{i18n._(t`Add Liquidity`)}</ButtonPrimary>
                             </a>
                         ) : (
                             ''
                         )}
                     </div>
+             </div>
+             <div className="flex mb-5 xl:justify-end">
+                <div className="ml-10 flex lg:w-60 w-full">
+                    <ButtonLight disabled={show15MinTimeFrame} onClick={handle15MinTimeFrameSelect}>15 min</ButtonLight>
                 </div>
+                <div className="flex lg:w-60  w-full ml-10">
+                    <ButtonLight disabled={show30MinTimeFrame} onClick={handle30MinTimeFrameSelect}>30 min</ButtonLight>
+                </div>
+                <div className="flex lg:w-60  w-full ml-10">
+                    <ButtonLight disabled={show1HTimeFrame} onClick={handle1HTimeFrameSelect}>1h</ButtonLight>
+                </div>
+             </div>
             </div>
             <div className="App border-yellow">
-                {!formattedData ? (
-                    <div>
-                        <div ref={chartContainerRef} className="chart-container w-full w-2xl hidden" />
-                        <img src={ChartAnimationLogo} className="m-auto mt-28" />
-                    </div>
-                ) : (
-                    <div ref={chartContainerRef} className="chart-container w-full w-2xl" />
-                )}
+                
+                <div ref={chartContainerRef} className="chart-container w-full w-2xl hidden" />
+                <img ref={preloader} src={ChartAnimationLogo} className="m-auto mt-28" />
+                    
+              
+              
 
                 <CurrencySearchModal
                     isOpen={showSearch}

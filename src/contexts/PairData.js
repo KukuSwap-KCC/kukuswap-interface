@@ -12,6 +12,8 @@ dayjs.extend(utc)
 
 const PairDataContext = createContext()
 
+const UPDATE_15MIN_DATA = 'UPDATE_15MIN_DATA'
+const UPDATE_30MIN_DATA = 'UPDATE_30MIN_DATA'
 const UPDATE_HOURLY_DATA = 'UPDATE_HOURLY_DATA'
 
 function usePairDataContext() {
@@ -30,7 +32,164 @@ const getHourlyRateData = async (pairAddress, startTime, latestBlock) => {
         const timestamps = []
         while (time <= utcEndTime.unix()) {
             timestamps.push(time)
+            time += 3600
+        }
+
+        // backout if invalid timestamp format
+        if (timestamps.length === 0) {
+            return []
+        }
+
+        // once you have all the timestamps, get the blocks for each timestamp in a bulk query
+        let blocks
+
+        console.log(timestamps)
+
+        blocks = await getBlocksFromTimestamps(timestamps, 500)
+
+        // catch failing case
+        if (!blocks || blocks?.length === 0) {
+            return []
+        }
+
+        if (latestBlock) {
+            blocks = blocks.filter(b => {
+                return parseFloat(b.number) <= parseFloat(latestBlock)
+            })
+        }
+
+        const result = await splitQuery(HOURLY_PAIR_RATES, kukuswap, [pairAddress], blocks, 100)
+
+        // format token ETH price results
+        let values = []
+        for (var row in result) {
+            let timestamp = row.split('t')[1]
+            if (timestamp && result[row]) {
+                values.push({
+                    timestamp,
+                    rate0: parseFloat(result[row]?.token0Price),
+                    rate1: parseFloat(result[row]?.token1Price)
+                })
+            }
+        }
+
+        let formattedHistoryRate0 = []
+        let formattedHistoryRate1 = []
+
+        // for each hour, construct the open and close price
+        for (let i = 0; i < values.length - 1; i++) {
+            formattedHistoryRate0.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate0),
+                close: parseFloat(values[i + 1].rate0)
+            })
+            formattedHistoryRate1.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate1),
+                close: parseFloat(values[i + 1].rate1)
+            })
+        }
+
+        return [formattedHistoryRate0, formattedHistoryRate1]
+    } catch (e) {
+        console.log(e)
+        return [[], []]
+    }
+}
+
+
+const get15MinRateData = async (pairAddress, startTime, latestBlock) => {
+    try {
+        const utcEndTime = dayjs.utc()
+
+        console.log(utcEndTime.unix())
+
+        let time = startTime
+
+        // create an array of hour start times until we reach current hour
+        const timestamps = []
+        while (time <= utcEndTime.unix()) {
+            timestamps.push(time)
             time += 900
+        }
+
+        // backout if invalid timestamp format
+        if (timestamps.length === 0) {
+            return []
+        }
+
+        // once you have all the timestamps, get the blocks for each timestamp in a bulk query
+        let blocks
+
+        console.log('timestamps')
+        console.log(timestamps)
+
+        blocks = await getBlocksFromTimestamps(timestamps, 500)
+
+        // catch failing case
+        if (!blocks || blocks?.length === 0) {
+            return []
+        }
+
+        if (latestBlock) {
+            blocks = blocks.filter(b => {
+                return parseFloat(b.number) <= parseFloat(latestBlock)
+            })
+        }
+
+        const result = await splitQuery(HOURLY_PAIR_RATES, kukuswap, [pairAddress], blocks, 100)
+
+        // format token ETH price results
+        let values = []
+        for (var row in result) {
+            let timestamp = row.split('t')[1]
+            if (timestamp && result[row]) {
+                values.push({
+                    timestamp,
+                    rate0: parseFloat(result[row]?.token0Price),
+                    rate1: parseFloat(result[row]?.token1Price)
+                })
+            }
+        }
+
+        let formattedHistoryRate0 = []
+        let formattedHistoryRate1 = []
+
+        // for each hour, construct the open and close price
+        for (let i = 0; i < values.length - 1; i++) {
+            formattedHistoryRate0.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate0),
+                close: parseFloat(values[i + 1].rate0)
+            })
+            formattedHistoryRate1.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate1),
+                close: parseFloat(values[i + 1].rate1)
+            })
+        }
+        
+        return [formattedHistoryRate0, formattedHistoryRate1]
+    } catch (e) {
+        console.log(e)
+        return [[], []]
+    }
+}
+
+
+const get30MinRateData = async (pairAddress, startTime, latestBlock) => {
+    try {
+        const utcEndTime = dayjs.utc()
+
+        console.log(utcEndTime.unix())
+
+        let time = startTime
+
+        // create an array of hour start times until we reach current hour
+        const timestamps = []
+        while (time <= utcEndTime.unix()) {
+            timestamps.push(time)
+            time += 1800
         }
 
         // backout if invalid timestamp format
@@ -155,6 +314,12 @@ export async function splitQuery(query, localClient, vars, list, skipCount = 100
 }
 
 function reducer(state, { type, payload }) {
+
+    console.log('reducer')
+    console.log(state)
+    console.log(type)
+    console.log(payload)
+
     switch (type) {
         case UPDATE_HOURLY_DATA: {
             const { address, hourlyData, timeWindow } = payload
@@ -165,6 +330,38 @@ function reducer(state, { type, payload }) {
                     hourlyData: {
                         ...state?.[address]?.hourlyData,
                         [timeWindow]: hourlyData
+                    }
+                }
+            }
+        }
+
+        case UPDATE_15MIN_DATA: {
+
+            const { address, min15Data, timeWindow } = payload
+
+            console.log(payload)
+
+            return {
+                ...state,
+                [address]: {
+                    ...state?.[address],
+                    min15Data: {
+                        ...state?.[address]?.min15Data,
+                        [timeWindow]: min15Data
+                    }
+                }
+            }
+        }
+
+        case UPDATE_30MIN_DATA: {
+            const { address, min30Data, timeWindow } = payload
+            return {
+                ...state,
+                [address]: {
+                    ...state?.[address],
+                    min30Data: {
+                        ...state?.[address]?.min30Data,
+                        [timeWindow]: min30Data
                     }
                 }
             }
@@ -186,15 +383,102 @@ export default function Provider({ children }) {
         })
     }, [])
 
+    const update15MinData = useCallback((address, min15Data, timeWindow) => {
+        dispatch({
+            type: UPDATE_15MIN_DATA,
+            payload: { address, min15Data, timeWindow }
+        })
+    }, [])
+
+    const update30MinData = useCallback((address, min30Data, timeWindow) => {
+        dispatch({
+            type: UPDATE_30MIN_DATA,
+            payload: { address, min30Data, timeWindow }
+        })
+    }, [])
+
     return (
-        <PairDataContext.Provider value={useMemo(() => [state, updateHourlyData], [state, updateHourlyData])}>
+        <PairDataContext.Provider value={useMemo(() => [state, {update15MinData, update30MinData, updateHourlyData}], [state, {update15MinData, update30MinData, updateHourlyData}])}>
             {children}
         </PairDataContext.Provider>
     )
 }
 
+export function use15MinRateData(pairAddress, timeWindow) {
+    const [state, { update15MinData}] = usePairDataContext()
+
+    const chartData = state?.[pairAddress]?.min15Data?.[timeWindow]
+    
+
+    console.log('chart data')
+    console.log(chartData)
+    const latestBlock = useBlockNumber()
+
+    useEffect(() => {
+        const currentTime = dayjs.utc()
+
+        const windowSize = timeWindow === timeframeOptions.MONTH ? 'month' : 'week'
+        const startTime =
+            timeWindow === timeframeOptions.ALL_TIME
+                ? 1589760000
+                : currentTime
+                      .subtract(1, windowSize)
+                      .startOf('hour')
+                      .unix()
+
+        async function fetch() {
+            let data = await get15MinRateData(pairAddress, startTime, latestBlock)
+
+            console.log('update Data')
+
+            console.log(update15MinData)
+
+            update15MinData(pairAddress, data, timeWindow)
+        }
+        if (!chartData) {
+
+            
+            
+            fetch()
+        }
+    }, [chartData, timeWindow, pairAddress])
+
+    return chartData
+}
+
+
+export function use30MinRateData(pairAddress, timeWindow) {
+    const [state, {update30MinData}] = usePairDataContext()
+    const chartData = state?.[pairAddress]?.min30Data?.[timeWindow]
+    const latestBlock = useBlockNumber()
+
+    useEffect(() => {
+        const currentTime = dayjs.utc()
+
+        const windowSize = timeWindow === timeframeOptions.MONTH ? 'month' : 'week'
+        const startTime =
+            timeWindow === timeframeOptions.ALL_TIME
+                ? 1589760000
+                : currentTime
+                      .subtract(1, windowSize)
+                      .startOf('hour')
+                      .unix()
+
+        async function fetch() {
+            let data = await get30MinRateData(pairAddress, startTime, latestBlock)
+
+            update30MinData(pairAddress, data, timeWindow)
+        }
+        if (!chartData) {
+            fetch()
+        }
+    }, [chartData, timeWindow, pairAddress])
+
+    return chartData
+}
+
 export function useHourlyRateData(pairAddress, timeWindow) {
-    const [state, updateHourlyData] = usePairDataContext()
+    const [state, {updateHourlyData}] = usePairDataContext()
     const chartData = state?.[pairAddress]?.hourlyData?.[timeWindow]
     const latestBlock = useBlockNumber()
 

@@ -2,7 +2,7 @@ import { ChainId, Currency } from '@kukuswap/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 // import Logo from '../assets/images/logo.png'
-import Logo from '../assets/images/kukuswapLogogif1.gif'
+import Logo from '../assets/images/logoPNG.png'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useETHBalances } from '../state/wallet/hooks'
 import { ReactComponent as Burger } from '../assets/images/burger.svg'
@@ -72,10 +72,12 @@ function AppBar(): JSX.Element {
                                             >
                                                 {i18n._(t`Pool`)}
                                             </NavLink>
-                                            {/*<NavLink id={`stake-nav-link`} to={'/stake'}>
-                                                {i18n._(t`Stake`)}
-                                            </NavLink>
-                                            */}
+                                            {
+                                                <NavLink id={`stake-nav-link`} to={'/stake'}>
+                                                    {i18n._(t`Stake`)}
+                                                </NavLink>
+                                                
+                                            }
                                             <NavLink id={`charts-nav-link`} to={'/charts'}>
                                                 {i18n._(t`Charts`)}
                                             </NavLink>
@@ -136,7 +138,7 @@ function AppBar(): JSX.Element {
                                                             }}
                                                         >
                                                             <img
-                                                                src={`${process.env.PUBLIC_URL}/images/tokens/kuku-square.jpg`}
+                                                                src={`${process.env.PUBLIC_URL}/images/tokens/kuku.png`}
                                                                 alt="Switch Network"
                                                                 style={{
                                                                     minWidth: 36,
@@ -231,10 +233,12 @@ function AppBar(): JSX.Element {
                                 >
                                     {i18n._(t`Pool`)}
                                 </NavLink>
-                                {/*<NavLink id={`stake-nav-link`} to={'/stake'}>
-                                    {i18n._(t`Stake`)}
-                                </NavLink>*/}
-
+                                {
+                                    <NavLink id={`stake-nav-link`} to={'/stake'}>
+                                        {i18n._(t`Stake`)}
+                                    </NavLink>
+                                    
+                                }
                                 {
                                     <NavLink id={`charts-nav-link`} to={'/charts'}>
                                         {i18n._(t`Charts`)}

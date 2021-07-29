@@ -9,10 +9,10 @@ import {
     ROUTER_ADDRESS,
     KUKU_ADDRESS,
     TIMELOCK_ADDRESS,
-    WETH
+    WETH,
+    KUKU
 } from '@kukuswap/sdk'
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
-import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
 import { FACTORY_ADDRESS as UNI_FACTORY_ADDRESS } from '@uniswap/sdk'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
@@ -39,7 +39,7 @@ import ERC20_ABI from '../constants/abis/erc20.json'
 import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import WETH_ABI from '../constants/abis/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
-import BAR_ABI from '../constants/abis/bar.json'
+import STAKING_ABI from '../constants/abis/staking.json'
 import BENTOBOX_ABI from '../constants/abis/bentobox.json'
 import CHAINLINK_ORACLE_ABI from '../constants/abis/chainlink-oracle.json'
 import DASHBOARD_ABI from '../constants/abis/dashboard.json'
@@ -145,9 +145,6 @@ export function useUniContract(): Contract | null {
     return useContract(chainId ? SUSHI[chainId]?.address : undefined, UNI_ABI, true)
 }
 
-export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-    return useContract(stakingAddress, STAKING_REWARDS_ABI, withSignerIfPossible)
-}
 
 export function useBoringHelperContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
@@ -163,8 +160,10 @@ export function useMulticallContract(): Contract | null {
     return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
-export function useSushiContract(withSignerIfPossible = true): Contract | null {
+export function useKUKUContract(withSignerIfPossible = true): Contract | null {
     const { chainId } = useActiveWeb3React()
+
+
     return useContract(chainId && KUKU_ADDRESS[chainId], SUSHI_ABI, withSignerIfPossible)
 }
 
@@ -196,11 +195,10 @@ export function useRouterContract(): Contract | null {
     return useContract(chainId && ROUTER_ADDRESS[chainId], ROUTER_ABI, false)
 }
 
-export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {
+export function useStakingContract(withSignerIfPossible?: boolean): Contract | null {
     const { chainId } = useActiveWeb3React()
 
-    const address = '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2'
-    return useContract(chainId && BAR_ADDRESS[chainId], BAR_ABI, withSignerIfPossible)
+    return useContract(chainId && BAR_ADDRESS[chainId], STAKING_ABI, withSignerIfPossible)
 }
 
 export function useMakerContract(): Contract | null {

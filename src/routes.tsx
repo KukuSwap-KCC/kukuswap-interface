@@ -16,9 +16,7 @@ import Chart from './pages/Charts'
 import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
-import SushiBar from './pages/SushiBar'
-import SushiBarTransactions from './pages/SushiBar/SushiBarTransactions'
-import SushiBarTips from './pages/SushiBar/Tips'
+import Stake from './pages/Stake'
 import Trade from './pages/Trade'
 import Swap from './pages/Swap'
 import { RedirectHashRoutes, RedirectPathToSwapOnly, RedirectToSwap } from './pages/Swap/redirects'
@@ -31,7 +29,7 @@ function Routes(): JSX.Element {
         <Switch>
             <PublicRoute exact path="/connect" component={Connect} />
             {/* Staking */}
-            {/*<Route exact strict path="/stake" component={SushiBar} />å{/* Pages */}
+            <Route exact strict path="/stake" component={Stake} />
             <Route exact strict path="/tradingview" component={Trade} />
             <Route exact strict path="/trade" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />

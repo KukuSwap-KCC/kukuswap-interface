@@ -2,7 +2,7 @@ import { Fraction } from '../entities'
 import { ethers } from 'ethers'
 import { useCallback, useEffect, useState } from 'react'
 import useActiveWeb3React from '../hooks/useActiveWeb3React'
-import { useSaaveContract, useSushiContract } from '../hooks/useContract'
+import { useSaaveContract, useKUKUContract } from '../hooks/useContract'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { BalanceProps } from './useTokenBalance'
 
@@ -12,7 +12,7 @@ const useMaker = () => {
     const { account } = useActiveWeb3React()
 
     const addTransaction = useTransactionAdder()
-    const sushiContract = useSushiContract(true) // withSigner
+    const sushiContract = useKUKUContract(true) // withSigner
     const saaveContract = useSaaveContract(true) // withSigner
 
     // Allowance
