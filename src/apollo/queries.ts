@@ -403,6 +403,8 @@ export const HOURLY_PAIR_RATES = (
       t${block.timestamp}: pair(id:"${pairAddress}", block: { number: ${block.number} }) { 
         token0Price
         token1Price
+        volumeToken0
+        volumeToken1
       }
     `
     )

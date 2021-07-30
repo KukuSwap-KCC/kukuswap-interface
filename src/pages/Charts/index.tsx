@@ -20,13 +20,15 @@ import './styles.css'
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Helmet } from 'react-helmet'
-import { use15MinRateData, use30MinRateData, useHourlyRateData } from '../../contexts/PairData'
+import { use15MinRateData, use30MinRateData, useHourlyRateData, getRateData } from '../../contexts/PairData'
 
 import { timeframeOptions } from '../../constants'
 import { PairState, usePair } from '../../data/Reserves'
 import ChartAnimationLogo from '../../assets/images/chartAnimation.gif'
 import usePairs from '../../hooks/usePairs'
 import { CurrencySelect } from 'components'
+import { useBlockNumber } from 'state/application/hooks'
+import { features } from 'process'
 
 enum Fields {
     TOKEN0 = 0,
@@ -70,8 +72,12 @@ export default function App() {
 
     const pairs = usePairs(pair?.liquidityToken.address.toLowerCase())
 
+    const latestBlock = useBlockNumber()
 
-    let token0
+  
+
+
+    /*let token0
     let token1
     if (pairs) {
         token0 = pairs.pair.token0.symbol
@@ -178,6 +184,8 @@ export default function App() {
     if (show1HTimeFrame) {
         formattedData = formattedData60
     }
+    */
+
     
 
 
@@ -231,7 +239,7 @@ export default function App() {
         setShowSearch(false)
     }, [setShowSearch])
 
-    useEffect(() => {
+    /*useEffect(() => {
         let cur0: string | undefined = 'KUKU'
 
         if (currency0) {
@@ -403,8 +411,8 @@ export default function App() {
             }
         }
     }, [chartCreated])
-
-
+    */
+   
     return (
         <div className="App">
             <Helmet>
@@ -490,26 +498,13 @@ export default function App() {
                         )}
                     </div>
              </div>
-             <div className="flex mb-5 xl:justify-end">
-                <div className="ml-10 flex lg:w-60 w-full">
-                    <ButtonLight disabled={show15MinTimeFrame} onClick={handle15MinTimeFrameSelect}>15 min</ButtonLight>
-                </div>
-                <div className="flex lg:w-60  w-full ml-10">
-                    <ButtonLight disabled={show30MinTimeFrame} onClick={handle30MinTimeFrameSelect}>30 min</ButtonLight>
-                </div>
-                <div className="flex lg:w-60  w-full ml-10">
-                    <ButtonLight disabled={show1HTimeFrame} onClick={handle1HTimeFrameSelect}>1h</ButtonLight>
-                </div>
-             </div>
             </div>
             <div className="App border-yellow">
-                
-                <div ref={chartContainerRef} className="chart-container w-full w-2xl hidden" />
-                <img ref={preloader} src={ChartAnimationLogo} className="m-auto mt-28" />
+                { (pair) ?
+                <TVChartContainer pairAddress={pair.liquidityToken?.address.toLowerCase()} latestBlock={latestBlock}/>
+                : ''
+                }
                     
-              
-              
-
                 <CurrencySearchModal
                     isOpen={showSearch}
                     onCurrencySelect={handleCurrencySelect}

@@ -97,6 +97,90 @@ const getHourlyRateData = async (pairAddress, startTime, latestBlock) => {
     }
 }
 
+export const getRateData = async (pairAddress, latestBlock, window) => {
+    try {
+        const currentTime = dayjs.utc()
+        const utcEndTime = dayjs.utc()
+
+        console.log(utcEndTime.unix())
+
+        const windowSize = 'week'
+        const startTime = currentTime.subtract(1, windowSize).startOf('hour').unix()
+
+        let time = startTime
+
+        // create an array of hour start times until we reach current hour
+        const timestamps = []
+        while (time <= utcEndTime.unix()) {
+            timestamps.push(time)
+            time += window
+        }
+
+        // backout if invalid timestamp format
+        if (timestamps.length === 0) {
+            return []
+        }
+
+        // once you have all the timestamps, get the blocks for each timestamp in a bulk query
+        let blocks
+
+        blocks = await getBlocksFromTimestamps(timestamps, 500)
+
+        // catch failing case
+        if (!blocks || blocks?.length === 0) {
+            return []
+        }
+
+        if (latestBlock) {
+            blocks = blocks.filter(b => {
+                return parseFloat(b.number) <= parseFloat(latestBlock)
+            })
+        }
+
+        const result = await splitQuery(HOURLY_PAIR_RATES, kukuswap, [pairAddress], blocks, 100)
+
+        // format token ETH price results
+        let values = []
+        for (var row in result) {
+            let timestamp = row.split('t')[1]
+            if (timestamp && result[row]) {
+                values.push({
+                    timestamp,
+                    rate0: parseFloat(result[row]?.token0Price),
+                    rate1: parseFloat(result[row]?.token1Price),
+                    volumeToken0: parseFloat(result[row]?.volumeToken0),
+                    volumeToken1: parseFloat(result[row]?.volumeToken1),
+                })
+            }
+        }
+
+        let formattedHistoryRate0 = []
+        let formattedHistoryRate1 = []
+
+        // for each hour, construct the open and close price
+        for (let i = 0; i < values.length - 1; i++) {
+            formattedHistoryRate0.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate0),
+                close: parseFloat(values[i + 1].rate0),
+                volume: parseFloat(values[i].volumeToken0),
+            })
+            formattedHistoryRate1.push({
+                timestamp: values[i].timestamp,
+                open: parseFloat(values[i].rate1),
+                close: parseFloat(values[i + 1].rate1),
+                volume: parseFloat(values[i].volumeToken1),
+            })
+        }
+        
+        return [formattedHistoryRate0, formattedHistoryRate1]
+    } catch (e) {
+        console.log(e)
+        return [[], []]
+    }
+}
+
+
 
 const get15MinRateData = async (pairAddress, startTime, latestBlock) => {
     try {
@@ -279,8 +363,6 @@ export async function getBlocksFromTimestamps(timestamps, skipCount = 500) {
             }
         }
     }
-
-    console.log(blocks)
     return blocks
 }
 

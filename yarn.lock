@@ -2476,10 +2476,10 @@
   resolved "https://registry.yarnpkg.com/@kukuswap/core/-/core-2.0.0-canary.0.tgz#8ca841c0718cd174314caf4de07565f1a570aba6"
   integrity sha512-nDVwLVM74MpZuuWMFSSLau8OQJcd973uujVvDLDNCEN8JmDZ1Z5449uO+vLH21NMO36NF5TNH2sQYGNOoKfsFw==
 
-"@kukuswap/default-token-list@7.2.4":
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/@kukuswap/default-token-list/-/default-token-list-7.2.4.tgz#03ca6d958bb4ec8c5def77e44989cbd537f4dc75"
-  integrity sha512-1VUUtBJnmZTEJWkIa4EKgYgjsgm437HmNeKqijhLIBul/VQz8jC34H77U3/eFkvvZDpW+fLqQBn8uXSce07eOw==
+"@kukuswap/default-token-list@7.2.5":
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/@kukuswap/default-token-list/-/default-token-list-7.2.5.tgz#7303afc9f6fd850481831d83c958f0043db8ea4d"
+  integrity sha512-zDsT3p/WEUkncuzegbRejngCftkSNGceVZ8aFkaLWKDKjeN6Ih2iYYdBdZhzmAZOwHqjhE45JXFI5Lx+6May/g==
 
 "@kukuswap/sdk@5.0.7":
   version "5.0.7"

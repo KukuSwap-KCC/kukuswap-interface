@@ -3,12 +3,26 @@ import './index.css';
 import {
 	widget,
 	ChartingLibraryWidgetOptions,
-	LanguageCode,
 	IChartingLibraryWidget,
 	ResolutionString,
+	IBasicDataFeed,
+	OnReadyCallback,
+	ErrorCallback,
+	HistoryCallback,
+	LibrarySymbolInfo,
+	PeriodParams,
+	ResolveCallback,
+	SymbolResolveExtension,
+	SubscribeBarsCallback,
+	Bar,
+	LanguageCode 
 } from './charting_library/charting_library';
 
+import { getRateData } from '../../contexts/PairData'
+
 export interface ChartContainerProps {
+	pairAddress: string,
+	latestBlock: number,
 	symbol: ChartingLibraryWidgetOptions['symbol'];
 	interval: ChartingLibraryWidgetOptions['interval'];
 
@@ -38,7 +52,11 @@ function getLanguageFromURL(): LanguageCode | null {
 }
 
 export class TVChartContainer extends React.PureComponent<Partial<ChartContainerProps>, ChartContainerState> {
+
+
 	public static defaultProps: ChartContainerProps = {
+		pairAddress: '',
+		latestBlock: 0,
 		symbol: 'AAPL',
 		interval: 'D' as ResolutionString,
 		container: 'tv_chart_container',
@@ -56,6 +74,9 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
 	private tvWidget: IChartingLibraryWidget | null = null;
 
 	public componentDidMount(): void {  
+
+		this.initWidget()
+		
 		const widgetOptions: ChartingLibraryWidgetOptions = {
 			symbol: this.props.symbol as string,
 			// BEWARE: no trailing slash is expected in feed URL
@@ -66,7 +87,7 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
 			library_path: this.props.libraryPath as string,
 
 			locale: getLanguageFromURL() || 'en',
-			disabled_features: ['use_localstorage_for_settings'],
+			disabled_features: ['use_localstorage_for_settings', 'header_symbol_search', 'symbol_search_hot_key', 'header_compare', 'display_market_status'],
 			enabled_features: ['study_templates'],
 			charts_storage_url: this.props.chartsStorageUrl,
 			charts_storage_api_version: this.props.chartsStorageApiVersion,
@@ -75,7 +96,7 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
 			fullscreen: this.props.fullscreen,
 			autosize: this.props.autosize,
 			studies_overrides: this.props.studiesOverrides,
-			theme: "Dark"
+			theme: "Dark",
 		};
 
 		const tvWidget = new widget(widgetOptions);
@@ -103,6 +124,23 @@ export class TVChartContainer extends React.PureComponent<Partial<ChartContainer
 			this.tvWidget.remove();
 			this.tvWidget = null;
 		}
+	}
+
+	private initWidget():void {
+		const resolutions = ["1", "5", "15", "30", "45", "60", "120", "240", "1D"] as ResolutionString[]
+
+		const pair = this.props.pairAddress
+		const latestBlock = this.props.latestBlock
+
+		async function fetch(pair: string, latestBlock:number) {
+			let data = await getRateData(pair, latestBlock, 900)
+	
+			console.log('update Data')
+	
+			console.log(data)
+		}
+	
+		fetch(pair as string, latestBlock as number)
 	}
 
 	public render(): JSX.Element {
