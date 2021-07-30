@@ -163,13 +163,14 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate0),
                 close: parseFloat(values[i + 1].rate0),
-                volume: parseFloat(values[i].volumeToken0),
+                volume: parseFloat(values[i+1].volumeToken0 - values[i].volumeToken0),
+
             })
             formattedHistoryRate1.push({
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate1),
                 close: parseFloat(values[i + 1].rate1),
-                volume: parseFloat(values[i].volumeToken1),
+                volume: parseFloat(values[i+1].volumeToken1 - values[i].volumeToken1),
             })
         }
         
