@@ -8,6 +8,7 @@ export default function IloCard({ project }: IloCardProps) {
     /*
         Getting from Smart Contract
     */
+
     const softCap = '365,000'
 
     const percent = '20%'
@@ -22,9 +23,12 @@ export default function IloCard({ project }: IloCardProps) {
 
     const roundPlaceHolder = 'Round 1'
 
+    let status = 'coming_soon'
+
     return (
         <CardInternal
             id={project.id}
+            status={status}
             bannerUrl={project.bannerUrl}
             startDate={project.startDate}
             endDate={project.endDate}

@@ -8,12 +8,20 @@ import ProgressBar from '../../ProgressBar'
 export default function CardInternal(props: CardProps) {
     const { i18n } = useLingui()
 
-    let status = 'live'
+    let status = 'coming_soon'
 
-    if (props.presaleStatus == 'coming_soon') {
-        status = 'coming Soon'
-    } else if (props.presaleStatus == 'finished') {
+    if (props.status == 'live') {
+        status = 'Live'
+    } else if (props.status == 'coming_soon') {
+        status = 'Coming soon'
+    } else if (props.status == 'finished') {
         status = 'finished'
+    } else if (props.status == 'waiting_lp') {
+        status = 'LP generation'
+    } else if (props.status == 'presale_finished') {
+        status = 'Presale finished'
+    } else {
+        status = 'Failed'
     }
 
     return (

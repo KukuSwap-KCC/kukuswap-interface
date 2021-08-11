@@ -1,4 +1,4 @@
-export type IloStatus = 'coming_soon' | 'live' | 'finished'
+export type IloStatus = 'coming_soon' | 'live' | 'finished' | 'failed' | 'waiting_lp' | 'presale_finished'
 
 export interface IloProject {
     id: string

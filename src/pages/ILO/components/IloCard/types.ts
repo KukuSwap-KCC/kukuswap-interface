@@ -1,6 +1,7 @@
 import { IloStatus, IloProject } from '../../../../constants/iloProjects'
 
 export interface CardProps {
+    status: string
     bannerUrl: string
     roundPlaceHolder: string
     startDate: string
