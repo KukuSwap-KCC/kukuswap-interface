@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
         'import/no-cycle': 'error',
         'no-extend-native': 'off',
         'react/prop-types': 'off',

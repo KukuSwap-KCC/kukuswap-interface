@@ -43,9 +43,10 @@ const getHourlyRateData = async (pairAddress, startTime, latestBlock) => {
         // once you have all the timestamps, get the blocks for each timestamp in a bulk query
         let blocks
 
-        console.log(timestamps)
-
         blocks = await getBlocksFromTimestamps(timestamps, 500)
+
+        console.log('fetched')
+        console.log(blocks)
 
         // catch failing case
         if (!blocks || blocks?.length === 0) {
@@ -101,8 +102,6 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
     try {
         const currentTime = dayjs.utc()
         const utcEndTime = dayjs.utc()
-
-        console.log(utcEndTime.unix())
 
         const windowSize = 'week'
         const startTime = currentTime
@@ -166,14 +165,13 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate0),
                 close: parseFloat(values[i + 1].rate0),
-                volume: parseFloat(values[i+1].volumeToken0 - values[i].volumeToken0),
-
+                volume: parseFloat(values[i + 1].volumeToken0 - values[i].volumeToken0)
             })
             formattedHistoryRate1.push({
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate1),
                 close: parseFloat(values[i + 1].rate1),
-                volume: parseFloat(values[i+1].volumeToken1 - values[i].volumeToken1),
+                volume: parseFloat(values[i + 1].volumeToken1 - values[i].volumeToken1)
             })
         }
 
@@ -206,9 +204,6 @@ const get15MinRateData = async (pairAddress, startTime, latestBlock) => {
 
         // once you have all the timestamps, get the blocks for each timestamp in a bulk query
         let blocks
-
-        console.log('timestamps')
-        console.log(timestamps)
 
         blocks = await getBlocksFromTimestamps(timestamps, 500)
 
@@ -364,6 +359,7 @@ export async function getBlocksFromTimestamps(timestamps, skipCount = 500) {
             }
         }
     }
+
     return blocks
 }
 
