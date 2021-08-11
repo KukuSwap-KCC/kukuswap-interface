@@ -72,7 +72,7 @@ export default function App() {
 
     const pairs = usePairs(pair?.liquidityToken.address.toLowerCase())
 
-    const latestBlock = useBlockNumber()
+    const latestBlock = 1709928
 
     /*let token0
     let token1
@@ -183,6 +183,8 @@ export default function App() {
     }
     */
 
+    
+
     const handleCurrencySelect = useCallback(
         (currency: Currency) => {
             if (activeField === Fields.TOKEN0) {
@@ -229,6 +231,21 @@ export default function App() {
     const handleSearchDismiss = useCallback(() => {
         setShowSearch(false)
     }, [setShowSearch])
+
+
+    let cur0: string | undefined = 'KUKU'
+    if (currency0) {
+        if (currency0?.symbol != 'ETH') {
+            cur0 = currency0?.symbol
+        }
+    }
+    
+    let cur1: string | undefined = 'KCS'
+    if (currency1) {
+        if (currency1?.symbol != 'ETH') {
+            cur1 = currency1?.symbol
+        }
+    }
 
     /*useEffect(() => {
         let cur0: string | undefined = 'KUKU'
@@ -490,16 +507,19 @@ export default function App() {
                     </div>
                 </div>
             </div>
-            <div className="App border-yellow">
-                {pair ? (
-                    <TVChartContainer
-                        pairAddress={pair.liquidityToken?.address.toLowerCase()}
-                        latestBlock={latestBlock}
-                    />
-                ) : (
-                    ''
-                )}
-
+            
+            <div className="App">
+            { (pair) ?
+                <TVChartContainer pairAddress={pair.liquidityToken?.address.toLowerCase()} latestBlock={latestBlock}
+                baseCurrencySymbol={pair.token0.symbol}
+                baseCurrencyId={cur0 ?? 'KUKU'}
+                baseCurrency={currency0 ?? KUKU}
+                otherCurrencyId={ cur1 ?? 'KCS'}
+                otherCurrency={currency1 ?? ETHER}/>
+                : 
+                <img src={ChartAnimationLogo} alt="" className="m-auto border-yellow" />
+                }
+                    
                 <CurrencySearchModal
                     isOpen={showSearch}
                     onCurrencySelect={handleCurrencySelect}
