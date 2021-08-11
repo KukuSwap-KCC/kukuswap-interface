@@ -76,10 +76,13 @@ function AppBar(): JSX.Element {
                                                 <NavLink id={`stake-nav-link`} to={'/stake'}>
                                                     {i18n._(t`Stake`)}
                                                 </NavLink>
-                                                
                                             }
                                             <NavLink id={`charts-nav-link`} to={'/charts'}>
                                                 {i18n._(t`Charts`)}
+                                            </NavLink>
+
+                                            <NavLink id={`charts-nav-link`} to={'/ilo'}>
+                                                {i18n._(t`ILO`)}
                                             </NavLink>
                                         </div>
                                     </div>
@@ -237,13 +240,16 @@ function AppBar(): JSX.Element {
                                     <NavLink id={`stake-nav-link`} to={'/stake'}>
                                         {i18n._(t`Stake`)}
                                     </NavLink>
-                                    
                                 }
                                 {
                                     <NavLink id={`charts-nav-link`} to={'/charts'}>
                                         {i18n._(t`Charts`)}
                                     </NavLink>
                                 }
+
+                                <NavLink id={`charts-nav-link`} to={'/ilo'}>
+                                    {i18n._(t`ILO`)}
+                                </NavLink>
                             </div>
                         </Disclosure.Panel>
                     </>

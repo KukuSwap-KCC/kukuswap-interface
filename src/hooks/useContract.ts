@@ -145,7 +145,6 @@ export function useUniContract(): Contract | null {
     return useContract(chainId ? SUSHI[chainId]?.address : undefined, UNI_ABI, true)
 }
 
-
 export function useBoringHelperContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && BORING_HELPER_ADDRESS[chainId], BORING_HELPER_ABI, false)
@@ -162,7 +161,6 @@ export function useMulticallContract(): Contract | null {
 
 export function useKUKUContract(withSignerIfPossible = true): Contract | null {
     const { chainId } = useActiveWeb3React()
-
 
     return useContract(chainId && KUKU_ADDRESS[chainId], SUSHI_ABI, withSignerIfPossible)
 }

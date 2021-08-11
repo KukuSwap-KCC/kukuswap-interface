@@ -14,11 +14,7 @@ interface BalanceCardProps {
     stakingRewardBalance: BalanceProps
 }
 
-export default function BalanceCard({
-    xKUKUBalance,
-    kukuBalance,
-    stakingRewardBalance
-}: BalanceCardProps) {
+export default function BalanceCard({ xKUKUBalance, kukuBalance, stakingRewardBalance }: BalanceCardProps) {
     const { i18n } = useLingui()
     const { account } = useActiveWeb3React()
     return (
@@ -32,7 +28,7 @@ export default function BalanceCard({
                         <img className="w-10 pr-1 md:w-16  mr-1 md:mr-2 -mb-1.5" src={KCSImage} alt="kuku" />
                         <div className="flex flex-col justify-center">
                             <p className="text-caption2 md:text-lg font-bold text-high-emphesis">
-                            {formatFromBalance(stakingRewardBalance.value)}
+                                {formatFromBalance(stakingRewardBalance.value)}
                             </p>
                             <p className="text-caption2 md:text-caption text-primary">WKCS</p>
                         </div>
@@ -47,7 +43,7 @@ export default function BalanceCard({
                         <img className="w-10 pr-1 md:w-16  mr-1 md:mr-2 -mb-1.5" src={SushiImage} alt="kuku" />
                         <div className="flex flex-col justify-center">
                             <p className="text-caption2 md:text-lg font-bold text-high-emphesis">
-                            {formatFromBalance(xKUKUBalance.value)}
+                                {formatFromBalance(xKUKUBalance.value)}
                             </p>
                             <p className="text-caption2 md:text-caption text-primary">KUKU</p>
                         </div>

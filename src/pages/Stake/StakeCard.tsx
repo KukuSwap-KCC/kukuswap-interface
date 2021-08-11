@@ -64,7 +64,7 @@ export default function StakeCard({ kukuBalance, xKUKUBalance }: StakeCardProps)
 
     const balance: BalanceProps = activeTab === 0 ? kukuBalance : xKUKUBalance
     const formattedBalance = formatFromBalance(balance.value)
-    
+
     const [input, setInput] = useState<string>('')
     const [usingBalance, setUsingBalance] = useState(false)
     const parsedInput: BalanceProps = usingBalance ? balance : formatToBalance(input !== '.' ? input : '')
@@ -135,7 +135,6 @@ export default function StakeCard({ kukuBalance, xKUKUBalance }: StakeCardProps)
         ),
         BAR_ADDRESS[321]
     )
-    
 
     return (
         <>
@@ -185,16 +184,15 @@ export default function StakeCard({ kukuBalance, xKUKUBalance }: StakeCardProps)
                 />
                 {/* input overlay: */}
                 {
-                    
-                <div className="relative h-0 bottom-14 w-full pointer-events-none">
-                    <div
-                        className={`flex justify-between items-center h-14 rounded px-3 md:px-5 ${
-                            inputError ? ' border border-red' : ''
-                        }`}
-                    >
-                        <div className="flex">
-                            {inputError && <img className="w-4 md:w-5 mr-2" src={ErrorTriangle} alt="error" />}
-                            { /*(<p
+                    <div className="relative h-0 bottom-14 w-full pointer-events-none">
+                        <div
+                            className={`flex justify-between items-center h-14 rounded px-3 md:px-5 ${
+                                inputError ? ' border border-red' : ''
+                            }`}
+                        >
+                            <div className="flex">
+                                {inputError && <img className="w-4 md:w-5 mr-2" src={ErrorTriangle} alt="error" />}
+                                {/*(<p
                                 className={`text-caption2 md:text-lg font-bold ${
                                     input ? 'text-high-emphesis' : 'text-secondary'
                                 }`}
@@ -202,16 +200,15 @@ export default function StakeCard({ kukuBalance, xKUKUBalance }: StakeCardProps)
                                 {`${input ? input : '0'} ${activeTab === 0 ? 'KUKU' : 'Shares'}`}
 
                             </p>
-                            */
-                            }
-                        </div>
-                        <div className="flex items-center text-secondary text-caption2 md:text-caption">
-                            <div className={input ? 'hidden md:flex md:items-center' : 'flex items-center'}>
-                                <p>{i18n._(t`Balance`)}:&nbsp;</p>
-                                <p className="text-caption font-bold">{formattedBalance}</p>
+                            */}
                             </div>
-                            <button
-                                className={`
+                            <div className="flex items-center text-secondary text-caption2 md:text-caption">
+                                <div className={input ? 'hidden md:flex md:items-center' : 'flex items-center'}>
+                                    <p>{i18n._(t`Balance`)}:&nbsp;</p>
+                                    <p className="text-caption font-bold">{formattedBalance}</p>
+                                </div>
+                                <button
+                                    className={`
                                     pointer-events-auto
                                     focus:outline-none focus:ring hover:bg-opacity-40
                                      md:bg-opacity-301
@@ -219,15 +216,14 @@ export default function StakeCard({ kukuBalance, xKUKUBalance }: StakeCardProps)
                                     rounded-2xl py-1 px-2 md:py-1 md:px-3 ml-3 md:ml-4
                                     text-xs md:text-caption2 font-bold md:font-normal
                                 `}
-                                onClick={handleClickMax}
-
-                                onChange={handleChangeInput}
-                            >
-                                {i18n._(t`MAX`)}
-                            </button>
+                                    onClick={handleClickMax}
+                                    onChange={handleChangeInput}
+                                >
+                                    {i18n._(t`MAX`)}
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
                 {(approvalState === ApprovalState.NOT_APPROVED || approvalState === ApprovalState.PENDING) &&
                 activeTab === 0 ? (

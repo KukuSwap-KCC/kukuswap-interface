@@ -105,7 +105,10 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
         console.log(utcEndTime.unix())
 
         const windowSize = 'week'
-        const startTime = currentTime.subtract(1, windowSize).startOf('hour').unix()
+        const startTime = currentTime
+            .subtract(1, windowSize)
+            .startOf('hour')
+            .unix()
 
         let time = startTime
 
@@ -149,7 +152,7 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
                     rate0: parseFloat(result[row]?.token0Price),
                     rate1: parseFloat(result[row]?.token1Price),
                     volumeToken0: parseFloat(result[row]?.volumeToken0),
-                    volumeToken1: parseFloat(result[row]?.volumeToken1),
+                    volumeToken1: parseFloat(result[row]?.volumeToken1)
                 })
             }
         }
@@ -163,24 +166,22 @@ export const getRateData = async (pairAddress, latestBlock, window) => {
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate0),
                 close: parseFloat(values[i + 1].rate0),
-                volume: parseFloat(values[i].volumeToken0),
+                volume: parseFloat(values[i].volumeToken0)
             })
             formattedHistoryRate1.push({
                 timestamp: values[i].timestamp,
                 open: parseFloat(values[i].rate1),
                 close: parseFloat(values[i + 1].rate1),
-                volume: parseFloat(values[i].volumeToken1),
+                volume: parseFloat(values[i].volumeToken1)
             })
         }
-        
+
         return [formattedHistoryRate0, formattedHistoryRate1]
     } catch (e) {
         console.log(e)
         return [[], []]
     }
 }
-
-
 
 const get15MinRateData = async (pairAddress, startTime, latestBlock) => {
     try {
@@ -252,14 +253,13 @@ const get15MinRateData = async (pairAddress, startTime, latestBlock) => {
                 close: parseFloat(values[i + 1].rate1)
             })
         }
-        
+
         return [formattedHistoryRate0, formattedHistoryRate1]
     } catch (e) {
         console.log(e)
         return [[], []]
     }
 }
-
 
 const get30MinRateData = async (pairAddress, startTime, latestBlock) => {
     try {
@@ -396,7 +396,6 @@ export async function splitQuery(query, localClient, vars, list, skipCount = 100
 }
 
 function reducer(state, { type, payload }) {
-
     console.log('reducer')
     console.log(state)
     console.log(type)
@@ -418,7 +417,6 @@ function reducer(state, { type, payload }) {
         }
 
         case UPDATE_15MIN_DATA: {
-
             const { address, min15Data, timeWindow } = payload
 
             console.log(payload)
@@ -480,17 +478,21 @@ export default function Provider({ children }) {
     }, [])
 
     return (
-        <PairDataContext.Provider value={useMemo(() => [state, {update15MinData, update30MinData, updateHourlyData}], [state, {update15MinData, update30MinData, updateHourlyData}])}>
+        <PairDataContext.Provider
+            value={useMemo(() => [state, { update15MinData, update30MinData, updateHourlyData }], [
+                state,
+                { update15MinData, update30MinData, updateHourlyData }
+            ])}
+        >
             {children}
         </PairDataContext.Provider>
     )
 }
 
 export function use15MinRateData(pairAddress, timeWindow) {
-    const [state, { update15MinData}] = usePairDataContext()
+    const [state, { update15MinData }] = usePairDataContext()
 
     const chartData = state?.[pairAddress]?.min15Data?.[timeWindow]
-    
 
     console.log('chart data')
     console.log(chartData)
@@ -518,9 +520,6 @@ export function use15MinRateData(pairAddress, timeWindow) {
             update15MinData(pairAddress, data, timeWindow)
         }
         if (!chartData) {
-
-            
-            
             fetch()
         }
     }, [chartData, timeWindow, pairAddress])
@@ -528,9 +527,8 @@ export function use15MinRateData(pairAddress, timeWindow) {
     return chartData
 }
 
-
 export function use30MinRateData(pairAddress, timeWindow) {
-    const [state, {update30MinData}] = usePairDataContext()
+    const [state, { update30MinData }] = usePairDataContext()
     const chartData = state?.[pairAddress]?.min30Data?.[timeWindow]
     const latestBlock = useBlockNumber()
 
@@ -560,7 +558,7 @@ export function use30MinRateData(pairAddress, timeWindow) {
 }
 
 export function useHourlyRateData(pairAddress, timeWindow) {
-    const [state, {updateHourlyData}] = usePairDataContext()
+    const [state, { updateHourlyData }] = usePairDataContext()
     const chartData = state?.[pairAddress]?.hourlyData?.[timeWindow]
     const latestBlock = useBlockNumber()
 

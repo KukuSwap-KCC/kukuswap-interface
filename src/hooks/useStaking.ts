@@ -6,7 +6,6 @@ import { useStakingContract, useKUKUContract } from '../hooks/useContract'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { BalanceProps } from './useTokenBalance'
 
-
 const { BigNumber } = ethers
 
 const useStaking = () => {
@@ -14,7 +13,7 @@ const useStaking = () => {
     const addTransaction = useTransactionAdder()
     const sushiContract = useKUKUContract(true) // withSigner
     const stakingContract = useStakingContract(true) // withSigner
-    
+
     const [allowance, setAllowance] = useState('0')
 
     const fetchAllowance = useCallback(async () => {
@@ -50,15 +49,12 @@ const useStaking = () => {
     const enter = useCallback(
         // todo: this should be updated with BigNumber as opposed to string
         async (amount: BalanceProps | undefined) => {
-            
             if (amount?.value) {
                 try {
-                    
                     const tx = await stakingContract?.enter(amount?.value)
-                
+
                     return addTransaction(tx, { summary: 'Enter Staking' })
                 } catch (e) {
-                
                     return e
                 }
             }

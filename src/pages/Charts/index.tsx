@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom'
 import { createChart, CrosshairMode, IChartApi } from 'lightweight-charts'
 import { priceData } from './priceData'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
-import {TVChartContainer} from '../../components/ProCharts'
+import { TVChartContainer } from '../../components/ProCharts'
 import { currencyId } from '../../utils/currencyId'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { ButtonDropdownLight, ButtonLight, ButtonPrimaryNormal, ButtonPrimary } from '../../components/ButtonLegacy'
@@ -73,9 +73,6 @@ export default function App() {
     const pairs = usePairs(pair?.liquidityToken.address.toLowerCase())
 
     const latestBlock = useBlockNumber()
-
-  
-
 
     /*let token0
     let token1
@@ -186,9 +183,6 @@ export default function App() {
     }
     */
 
-    
-
-
     const handleCurrencySelect = useCallback(
         (currency: Currency) => {
             if (activeField === Fields.TOKEN0) {
@@ -207,10 +201,9 @@ export default function App() {
         setShow30MinTimeframe(false)
         setShow1HTimeframe(false)
         setChangeTimeFrame(true)
-        
-        preloader.current.className = "m-auto lg:mt-28"
-        chartContainerRef.current.className = "hidden"
-       
+
+        preloader.current.className = 'm-auto lg:mt-28'
+        chartContainerRef.current.className = 'hidden'
     }
 
     const handle30MinTimeFrameSelect = () => {
@@ -218,10 +211,9 @@ export default function App() {
         setShow30MinTimeframe(true)
         setShow1HTimeframe(false)
         setChangeTimeFrame(true)
-        
-        preloader.current.className = "m-auto lg:mt-28"
-        chartContainerRef.current.className = "hidden"
-         
+
+        preloader.current.className = 'm-auto lg:mt-28'
+        chartContainerRef.current.className = 'hidden'
     }
 
     const handle1HTimeFrameSelect = () => {
@@ -230,9 +222,8 @@ export default function App() {
         setShow1HTimeframe(true)
         setChangeTimeFrame(true)
 
-        preloader.current.className = "m-auto lg:mt-28"
-        chartContainerRef.current.className = "hidden"
-
+        preloader.current.className = 'm-auto lg:mt-28'
+        chartContainerRef.current.className = 'hidden'
     }
 
     const handleSearchDismiss = useCallback(() => {
@@ -412,7 +403,7 @@ export default function App() {
         }
     }, [chartCreated])
     */
-   
+
     return (
         <div className="App">
             <Helmet>
@@ -469,8 +460,8 @@ export default function App() {
                 </div>
             </div>
             <div className="xl:grid xl:grid-cols-2 xl:gap-2">
-             <div className="flex mb-5 ">
-                <div className="flex max-w-sm w-full">
+                <div className="flex mb-5 ">
+                    <div className="flex max-w-sm w-full">
                         {currency0 && currency1 ? (
                             <a
                                 href={`/#/swap?inputCurrency=${currencyId(currency0)}&outputCurrency=${currencyId(
@@ -497,14 +488,18 @@ export default function App() {
                             ''
                         )}
                     </div>
-             </div>
+                </div>
             </div>
             <div className="App border-yellow">
-                { (pair) ?
-                <TVChartContainer pairAddress={pair.liquidityToken?.address.toLowerCase()} latestBlock={latestBlock}/>
-                : ''
-                }
-                    
+                {pair ? (
+                    <TVChartContainer
+                        pairAddress={pair.liquidityToken?.address.toLowerCase()}
+                        latestBlock={latestBlock}
+                    />
+                ) : (
+                    ''
+                )}
+
                 <CurrencySearchModal
                     isOpen={showSearch}
                     onCurrencySelect={handleCurrencySelect}

@@ -12,7 +12,7 @@ import {
 
 import Pool from './pages/Pool'
 import Chart from './pages/Charts'
-
+import ILO from './pages/ILO'
 import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
@@ -34,6 +34,7 @@ function Routes(): JSX.Element {
             <Route exact strict path="/trade" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />
             <Route exact strict path="/charts" component={Chart} />
+            <Route exact strict path="/ilo" component={ILO} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
             <Route exact strict path="/find" component={PoolFinder} />

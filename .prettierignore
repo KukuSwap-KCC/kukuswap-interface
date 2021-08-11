@@ -1,2 +1,9 @@
 # Ignore all CSS files:
 *.css
+
+#ignore charting_library
+public/charting_library
+public/datafeeds
+
+src/components/ProCharts/charting_library
+src/components/ProCharts/datafeeds
